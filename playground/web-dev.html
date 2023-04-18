@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>기존 웹 개발 방식</title>
+</head>
+<body>
+	<div id="app">
+		<!-- hello world -->
+	</div>
+
+	<script>
+		var div = document.querySelector('#app');
+		var str = 'Hello World!';
+		div.innerHTML = str;
+
+		str = 'Hello World!!!';	// 데이터 변경 시 화면에는 반영이 안 됨
+		div.innerHTML = str;	// 다시 대입해야 함
+	</script>
+</body>
+</html>

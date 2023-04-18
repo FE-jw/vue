@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My Cat</title>
+</head>
+<body>
+	<script>
+		function Cat(name){
+			this.name = name;
+			this.sayName = function(){
+				console.log(`내 이름은 ${name}이다옹`);
+			},
+			this.crying = function(){
+				console.log('crying 메소드 호출: ' + name + name);
+			}
+		}
+
+		const cat_1 = new Cat('샤므');
+		cat_1.sayName();
+		cat_1.crying();
+
+		const cat_2 = new Cat('샤미');
+		cat_2.sayName();
+		cat_2.crying();
+
+		const cat_3 = new Cat('샤몽');
+		cat_3.sayName();
+		cat_3.crying();
+
+		const cat_4 = new Cat('샤옹');
+		cat_4.sayName();
+		cat_4.crying();
+
+		const cat_5 = new Cat('샤츄');
+		cat_5.sayName();
+		cat_5.crying();
+	</script>
+</body>
+</html>
