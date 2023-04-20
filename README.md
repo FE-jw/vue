@@ -6,11 +6,35 @@ ViewModel은 DOM Listeners를 통해 사용자에게 이벤트를 전달받고 M
 
 ---
 
+* Vue 컴포넌트 통신 방식
+뷰 컴포넌트는 각각 고유한 데이터 유효 범위를 갖는다.  
+따라서, 컴포넌트 간 데이터를 주고 받기 위해선 아래와 같이 규칙을 따라야 한다.
+	* 상위 -> 하위: props 전달 (데이터 내려줌)
+		```html
+		<app-header v-bind:프롭스_속성_이름="상위_컴포넌트의_데이터_이름"></app-header>
+		<app-header v-bind:propsdata="message"></app-header>
+		```
+
+	* 하위 -> 상위: 이벤트 발생
+
 * Vue 컴포넌트 등록하기
 	```js
-	// Vue.component('컴포넌트 이름', 컴포넌트 내용);
+	// 전역 컴포넌트: Vue.component('컴포넌트 이름', 컴포넌트 내용);
 	Vue.component('app-header', {
 		template: '<h1>Header</h1>'
+	});
+
+	// 지역 컴포넌트
+	// 특정 컴포넌트 하단에 어떤 컴포넌트가 등록됐는지 components 속성으로 확인 가능하기 때문에 보통 지역 컴포넌트를 사용
+	new Vue({
+		el: '#app',
+		// 지역 컴포넌트 등록 방식
+		components: {
+			// '컴포넌트 이름': 컴포넌트 내용
+			'app-footer': {
+				template: '<footer>footer</footer>'
+			}
+		}
 	});
 	```
 
