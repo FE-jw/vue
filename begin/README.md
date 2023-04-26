@@ -1,4 +1,4 @@
-# Vue
+# [Vue](https://v3-docs.vuejs-korea.org/guide/introduction.html)
 MVVM 패턴의 뷰모델(ViewModel) 레이어에 해당하는 화면(View)단 라이브러리  
 
 ViewModel은 DOM Listeners를 통해 사용자에게 이벤트를 전달받고 MODEL을 업데이트한다.  
@@ -6,16 +6,60 @@ ViewModel은 DOM Listeners를 통해 사용자에게 이벤트를 전달받고 M
 
 ---
 
-* Vue 컴포넌트 통신 방식
+* Vue 컴포넌트 통신 방식  
 뷰 컴포넌트는 각각 고유한 데이터 유효 범위를 갖는다.  
 따라서, 컴포넌트 간 데이터를 주고 받기 위해선 아래와 같이 규칙을 따라야 한다.
 	* 상위 -> 하위: props 전달 (데이터 내려줌)
+
 		```html
 		<app-header v-bind:프롭스_속성_이름="상위_컴포넌트의_데이터_이름"></app-header>
 		<app-header v-bind:propsdata="message"></app-header>
 		```
 
-	* 하위 -> 상위: 이벤트 발생
+	* 하위 -> 상위: 이벤트 발생(emit)
+
+		```js
+		// 하위 컴포넌트에서 'pass' 라는 이벤트 발생
+		const appHeader = {
+			template: '<button v-on:click="passEvent">click me</button>',
+			methods: {
+				passEvent: function(){
+					this.$emit('pass');
+				}
+			}
+		};
+		```
+
+		```html
+		<!-- 상위 컴포넌트에서 이벤트 받기 -->
+		<!-- <component v-on:하위_컴포넌트에서_발생한_이벤트="상위_컴포넌트의_메소드"></component> -->
+		<app-header v-on:pass="logText"></app-header>
+		<app-content v-on:increase="increaseNum" v-on:decrease="decreaseNum"></app-content>
+		```
+
+		```js
+		// 'logText'는 상위 컴포넌트 methods에서 정의함
+		new Vue({
+			el: '#app',
+			components: {
+				'app-header': appHeader
+			},
+			methods: {
+				logText: function(){
+					console.log('Hi');
+				},
+				increaseNum: function(){
+					console.log(++this.num);
+				},
+				decreaseNum: function(){
+					console.log(--this.num);
+				}
+			},
+			data: {
+				num: 10
+			}
+		});
+		```
 
 * Vue 컴포넌트 등록하기
 	```js

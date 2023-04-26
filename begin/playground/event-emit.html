@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue Event Emit</title>
+</head>
+<body>
+	<div id="app">
+		<app-header v-on:pass="logText"></app-header>
+		<app-content v-on:increase="increaseNum" v-on:decrease="decreaseNum"></app-content>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script>
+		const appHeader = {
+			template: '<button v-on:click="passEvent">click me</button>',
+			methods: {
+				passEvent: function(){
+					this.$emit('pass');
+				}
+			}
+		};
+
+		const appContent = {
+			template: '<div><button v-on:click="addNumber">increase</button><button v-on:click="removeNumber">decrease</button></div>',
+			methods: {
+				addNumber: function(){
+					this.$emit('increase');
+				},
+				removeNumber: function(){
+					this.$emit('decrease');
+				}
+			}
+		};
+
+		var vm = new Vue({
+			el: '#app',
+			components: {
+				'app-header': appHeader,
+				'app-content': appContent
+			},
+			methods: {
+				logText: function(){
+					console.log('Hi');
+				},
+				increaseNum: function(){
+					console.log(++this.num);
+				},
+				decreaseNum: function(){
+					console.log(--this.num);
+				}
+			},
+			data: {
+				num: 10
+			}
+		});
+	</script>
+</body>
+</html>
