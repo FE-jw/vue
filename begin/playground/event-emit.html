@@ -24,7 +24,10 @@
 		};
 
 		const appContent = {
-			template: '<div><button v-on:click="addNumber">increase</button><button v-on:click="removeNumber">decrease</button></div>',
+			template: `<div>
+				<button v-on:click="addNumber">increase</button>
+				<button v-on:click="removeNumber">decrease</button>
+			</div>`,
 			methods: {
 				addNumber: function(){
 					this.$emit('increase');

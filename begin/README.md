@@ -6,6 +6,49 @@ ViewModel은 DOM Listeners를 통해 사용자에게 이벤트를 전달받고 M
 
 ---
 
+* Vue 라우터
+
+	```js
+	const LoginComponent = {
+		template: `<div>Login</div>`
+	};
+
+	const router = new VueRouter({
+		// 페이지 라우팅 정보
+		routes: [
+			{
+				path: '/login',	// 페이지의 url
+				component: LoginComponent	// 해당 url에서 표시될 컴포넌트
+			}
+		]
+	});
+
+	new Vue({
+		el: '#app',
+		router: router
+	});
+	```
+
+	* router-view: url에 따라 뿌려질 영역
+
+		```html
+		<div id="app">
+			<router-view></router-view>
+		</div>
+		```
+
+	* router-link
+
+		```html
+		<div id="app">
+			<nav>
+				<router-link to="/login">Login</router-link>
+				<router-link to="/main">Main</router-link>
+			</nav>
+			<router-view></router-view>
+		</div>
+		```
+
 * Vue 컴포넌트 통신 방식  
 뷰 컴포넌트는 각각 고유한 데이터 유효 범위를 갖는다.  
 따라서, 컴포넌트 간 데이터를 주고 받기 위해선 아래와 같이 규칙을 따라야 한다.
@@ -59,6 +102,12 @@ ViewModel은 DOM Listeners를 통해 사용자에게 이벤트를 전달받고 M
 				num: 10
 			}
 		});
+		```
+
+	* 동위 레벨: 상위 컴포넌트에 이벤트를 전달하고 props를 내려줌
+
+		```js
+
 		```
 
 * Vue 컴포넌트 등록하기
