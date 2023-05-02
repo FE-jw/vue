@@ -6,6 +6,17 @@ ViewModel은 DOM Listeners를 통해 사용자에게 이벤트를 전달받고 M
 
 ---
 
+* Axios(액시오스)  
+vue에서 권고하고 있는 HTTP 통신 라이브러리  
+Promise 기반의 통신 라이브러리이며 상대적으로 다른 라이브러리에 비해 문서화가 잘되어 있고 API다 다양하다.
+
+	* 자바스크립트 비동기 처리 패턴
+		* https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
+		* https://joshua1988.github.io/web-development/javascript/promise-for-beginners/
+		* https://joshua1988.github.io/web-development/javascript/js-async-await/
+	* HTTP 프로토콜
+		* https://joshua1988.github.io/web-development/http-part1/
+
 * Vue 라우터
 
 	```js
