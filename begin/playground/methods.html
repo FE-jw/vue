@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue Methods</title>
+</head>
+<body>
+	<div id="app">
+		<button type="button" v-on:click="logText">Click Me!</button>
+		<input type="text" v-on:keyup.enter="logText">
+		<button type="button">Add</button>
+		<div>사용할 수 있는 티켓: {{ count[1] }}개</div>
+		<div>사용한 티켓: {{ count[2] }}개</div>
+		<div>남은 티켓: {{ count[3] }}개</div>
+		<button type="button" v-bind:class="btn[1]">{{ btn[1] }}</button>
+		<button type="button" v-bind:class="btn[2]">{{ btn[2] }}</button>
+		<button type="button" v-bind:class="btn[3]">{{ btn[3] }}</button>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				count: {
+					1: 1,
+					2: 0,
+					3: 4
+				},
+				btn: {
+					1: 'btn_off',
+					2: 'btn_off',
+					3: 'btn_off'
+				}
+			},
+			methods: {
+				logText: function(){
+					console.log('clicked');
+				}
+			}
+		});
+	</script>
+</body>
+</html>

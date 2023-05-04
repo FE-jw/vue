@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue Data Binding</title>
+</head>
+<body>
+	<div id="app">
+		<p>{{ str }}</p>
+		<p v-bind:id="uuid" v-bind:class="myClass">{{ num }}</p>
+		<p>{{ doubleNum }}</p>
+		<div v-if="loading">
+			Loading...
+		</div>
+		<div v-else>
+			test user login has benn logged in.
+		</div>
+		<div v-show="loading">
+			Loading...
+		</div>
+
+		<!-- 인풋 박스를 만들고 입력값을 p 태그에 출력해보기 -->
+		<input v-model="message" placeholder="edit me" />
+		<p>{{ message }}</p>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				str: 'Hi',
+				num: 10,
+				uuid: 'abc1234',
+				myClass: 'red',
+				loading: false,
+				message: ''
+			},
+			computed: {
+				doubleNum: function(){
+					return this.num * 2;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

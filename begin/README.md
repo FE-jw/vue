@@ -6,6 +6,38 @@ ViewModel은 DOM Listeners를 통해 사용자에게 이벤트를 전달받고 M
 
 ---
 
+* Vue의 템플릿 문법
+	* 데이터 바인딩: `{{ 콧수염 }}`
+	
+		```html
+		<div>{{ message }}</div>
+		```
+		
+	* 디렉티브: `v-` 로 시작
+
+		```html
+		<div v-if="show">Hello</div>
+		<p v-bind:id="uuid">{{ num }}</p>
+		```
+
+		* v-if는 DOM 자체가 생성, 제거되지만 v-show는 `display:none;` 시키는 방식
+
+		* [input data](https://vuejs.org/guide/essentials/forms.html#text)
+
+			```html
+			<input v-model="message" placeholder="edit me" />
+			<p>{{ message }}</p>
+			```
+			```js
+			new Vue({
+				el: '#app',
+				data: {
+					message: ''
+				}
+			});
+			```
+
+
 * Axios(액시오스)  
 vue에서 권고하고 있는 HTTP 통신 라이브러리  
 Promise 기반의 통신 라이브러리이며 상대적으로 다른 라이브러리에 비해 문서화가 잘되어 있고 API다 다양하다.
