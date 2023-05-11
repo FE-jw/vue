@@ -6,6 +6,54 @@ ViewModel은 DOM Listeners를 통해 사용자에게 이벤트를 전달받고 M
 
 ---
 
+* watch: 특정 data가 변경될 때마다 실행된다. 매번 실행하기에 부담스러운 비교적 무거운 로직이 들어가는 경우가 많다.
+
+	```js
+	new Vue({
+		el: '#app',
+		data: {
+			num: 10
+		},
+		watch: {
+			num: function(){
+				// num(data)가 변경되면 실행
+				this.logText();
+			}
+		},
+		methods: {
+			logText: function(){
+				console.log('changed');
+			}
+		}
+	});
+	```
+
+* computed: 특정 data를 가공한 값을 반환한다. 캐싱되고 빠른 계산이 가능하다.
+
+	```js
+	new Vue({
+		el: '#app',
+		data: {
+			num: 10
+		},
+		computed: {
+			doubleNum: function(){
+				return this.num * 2;
+			}
+		},
+		watch: {
+			num: function(newValue){
+				this.fetchUserByNumber(newValue);
+			}
+		},
+		methods: {
+			fetchUserByNumber: function(num){
+				console.log(num);
+			}
+		}
+	});
+	```
+
 * Vue의 템플릿 문법
 	* 데이터 바인딩: `{{ 콧수염 }}`
 	
