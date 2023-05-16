@@ -1,31 +1,44 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <HelloJw color="white" txt="BJW BJW BJW BJW"/>
-  </div>
+	<div>
+		<app-header
+			v-bind:propsdata="str"
+			v-on:renew="renewStr"></app-header>
+		<div class="data">App의 현재 data num의 값은 <span>{{ num }}</span>입니다.</div>
+		<app-cmp1 v-on:sendNumber="increaseNum"></app-cmp1>
+		<app-cmp2 v-bind:propsdata="num"></app-cmp2>
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-import HelloJw from './components/HelloJw.vue';
+import AppHeader from './components/AppHeader.vue';
+import AppCmp1 from './components/AppCmp1.vue';
+import AppCmp2 from './components/AppCmp2.vue';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-	HelloJw
-  }
+	data: function(){
+		return	{
+			str: 'Header',
+			num: 0
+		}
+	},
+	components: {
+		'app-header': AppHeader,
+		'app-cmp1': AppCmp1,
+		'app-cmp2': AppCmp2
+	},
+	methods: {
+		renewStr: function(){
+			this.str = 'Hi';
+		},
+		increaseNum: function(){
+			this.num += 1;
+		}
+	}
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+*	{margin:0;padding:0;}
+.data span	{font-weight:bold;color:#d33;}
+.content	{margin:20px 0;}
 </style>
