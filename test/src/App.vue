@@ -1,22 +1,27 @@
 <template>
 	<div class="wrap">
-		<VHeader />
-		<VContainer />
-		<VFooter />
+		<app-header></app-header>
+		<app-content v-bind:propsdata="lang"></app-content>
+		<app-footer></app-footer>
 	</div>
 </template>
 
 <script>
-import VHeader from './components/VHeader.vue';
-import VContainer from './components/VContainer.vue';
-import VFooter from './components/VFooter.vue';
+import AppHeader from './components/AppHeader.vue';
+import AppContainer from './components/AppContainer.vue';
+import AppFooter from './components/AppFooter.vue';
 
 export default {
 	name: 'App',
+	data: function(){
+		return{
+			lang: document.documentElement.lang
+		}
+	},
 	components: {
-		VHeader,
-		VContainer,
-		VFooter
+		'app-header': AppHeader,
+		'app-content': AppContainer,
+		'app-footer': AppFooter
 	}
 }
 </script>
@@ -27,7 +32,8 @@ export default {
 
 *	{margin:0;padding:0;}
 html	{-webkit-text-size-adjust:none;font-size:10px;}
-body	{background-color:#000;}
+body	{background-color:#111;}
+button	{border:0;font-family:inherit;font-size:1.4rem;font-weight:inherit;background:none;cursor:pointer;}
 #app	{line-height:1.3;font-family:'Pretendard', Arial, Helvetica, sans-serif;font-size:1.4rem;font-weight:200;color:#fff;}
 .wrap	{display:flex;flex-direction:column;min-height:100vh;}
 </style>
