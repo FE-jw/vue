@@ -1,24 +1,17 @@
-# test
+# **Vue**
 
-## Project setup
-```
-npm install
-```
+## **디렉토리 구조**
+* public/
+* src/
+	* assets/
+		* img/
+		* scss/
+	* components/
+	* App.vue
+	* main.js
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
+## **SCSS 사용하기**
 ```
-npm run build
+npm install --save-dev node-sass sass-loader
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
