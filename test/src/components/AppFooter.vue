@@ -13,7 +13,7 @@ export default {
 <style lang="scss">
 @import '../assets/scss/color';
 
-.footer	{padding:4.0rem;border-top:1px solid rgba($vue-light, 0.2);
+.footer	{padding:2.0rem;border-top:1px solid rgba($vue-light, 0.2);
 	.copy	{font-style:normal;color:#777;text-align:center;}
 }
 </style>

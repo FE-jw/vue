@@ -5,11 +5,13 @@
 			v-on:upNum="increaseNum"
 			v-on:resetNum="resetNum"></page-emit>
 		num 값은 {{ num }}입니다.
+		<page-form v-on:infoSubmit="submit"></page-form>
 	</main>
 </template>
 
 <script>
 import PageEmit from '../pages/PageEmit.vue';
+import PageForm from '../pages/PageForm.vue';
 
 export default {
 	props: ['propsdata'],
@@ -19,7 +21,8 @@ export default {
 		}
 	},
 	components: {
-		'page-emit': PageEmit
+		'page-emit': PageEmit,
+		'page-form': PageForm
 	},
 	methods: {
 		increaseNum: function(){
@@ -27,6 +30,11 @@ export default {
 		},
 		resetNum: function(){
 			this.num = 0;
+		},
+		submit: function(num){
+			console.log(
+				`AppContainer에서 inpNum을 전달받음. 값은 ${num}`
+			);
 		}
 	}
 }

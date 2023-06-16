@@ -1,17 +1,18 @@
 <template>
 	<header class="header">
 		<h1 class="vue-tit">
-			<svg class="logo" xmlns="http://www.w3.org/2000/svg" width="800" height="800" fill="none" viewBox="0 0 32 32"><path fill="#41B883" d="m2 4 14 24L30 4h-5.5L16 18.5 7.5 4H2Z"/><path fill="#35495E" d="M7.5 4 16 18.5 24.5 4h-5l-3.435 6.013L12.5 4h-5Z"/></svg>
-			<!-- <span class="tit">AEK</span> -->
+			<main-logo class="logo"></main-logo>
 		</h1>
 	</header>
 </template>
 
 <script>
-// import Logo from '../assets/logo.svg';
+import MainLogo from '../assets/MainLogo.vue';
 
 export default {
-
+	components: {
+		'main-logo': MainLogo
+	}
 }
 </script>
 
@@ -20,7 +21,14 @@ export default {
 
 .header	{border-bottom:1px solid rgba($vue-light, 0.5);
 	.vue-tit	{display:flex;justify-content:center;align-items:center;height:8.0rem;font-weight:900;color:$vue-light;
-		.logo	{width:5.0rem;height:5.0rem;vertical-align:top;}
+		.logo	{width:5.0rem;height:5.0rem;vertical-align:top;
+			&:hover	{
+				path	{transition:fill 0.2s;
+					&:nth-child(1)	{fill:$vue-dark;}
+					&:nth-child(2)	{fill:$vue-light;}
+				}
+			}
+		}
 	}
 }
 </style>

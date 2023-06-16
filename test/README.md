@@ -10,7 +10,6 @@
 	* App.vue
 	* main.js
 
-
 ## **SCSS 사용하기**
 ```
 npm install --save-dev node-sass sass-loader

@@ -13,5 +13,5 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/color';
 
-button	{padding:10px;color:$vue-light;background-color:rgba($vue-dark, 0.5);}
+button	{margin:5px;padding:10px;color:$vue-light;border:1px solid rgba(#fff, 0.2);background-color:rgba($vue-dark, 0.5);}
 </style>
