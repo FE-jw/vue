@@ -1,15 +1,20 @@
 <template>
-	<footer>
-		<address>Footer</address>
-	</footer>
+	<div>
+		<button type="button" class="btnClear" v-on:click="clearTodo">Clear All</button>	
+	</div>
 </template>
 
 <script>
 export default {
-
+	methods: {
+		clearTodo: function(){
+			localStorage.clear();
+		}
+	}
 }
 </script>
 
 <style scoped>
-footer	{padding:2.0rem;color:#555;text-align:center;}
+div	{padding:2.0rem;color:#555;text-align:center;}
+.btnClear	{display:block;width:8.0rem;height:4.0rem;margin:0 auto;}
 </style>
