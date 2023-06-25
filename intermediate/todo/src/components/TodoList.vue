@@ -3,6 +3,7 @@
 		<li v-for="(todoItem) in todoItems" :key="todoItem.key" :class="{complete: todoItem.completed}">
 			<button type="button" class="btn-check" v-on:click="toggleComplete(todoItem)">체크</button>
 			<span class="todo">{{ todoItem }}</span>
+			<button type="button" class="todo-remove">삭제</button>
 		</li>
 	</ul>
 </template>
@@ -44,4 +45,5 @@ export default {
 .todo-list li .todo	{font-size:1.4rem;padding:0 1.0rem;}
 .todo-list li.complete .btn-check	{color:#fff;background-color:#111;}
 .todo-list li.complete .todo	{color:#ccc;text-decoration:line-through;}
+.todo-list li .todo-remove	{background-color:#ccc;}
 </style>
