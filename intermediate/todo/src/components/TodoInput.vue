@@ -14,14 +14,21 @@ export default {
 	},
 	methods: {
 		addTodo: function(){
-			const obj = {
-				completed: false,
-				item: this.newItem
-			};
-
-			localStorage.setItem(
-				Date.now(), JSON.stringify(obj)
-			);
+			if(this.newItem != ''){
+				const obj = {
+					completed: false,
+					item: this.newItem
+				};
+	
+				localStorage.setItem(
+					Date.now(), JSON.stringify(obj)
+				);
+				
+				this.$emit('submitAdd', this.newItem);
+				this.newItem = '';
+			}else{
+				alert('할 일을 제대로 입력해주세요');
+			}
 		}
 	}
 }

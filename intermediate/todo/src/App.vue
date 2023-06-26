@@ -29,8 +29,8 @@ body	{background-color:#000;}
 input[type='text']	{display:block;width:100%;height:5.0rem;padding:0 2.0rem;border:none;border-radius:0;font-size:1.6rem;color:#35495E;background:#fff;box-sizing:border-box;}
 input::placeholder	{color:#999;}
 button	{border:none;border-radius:0;background:none;cursor:pointer;}
-.btn-add	{width:50px;font-size:4.0rem;font-weight:bold;color:#fff;background-color:#41B883;}
-.btn-remove	{width:50px;font-size:4.0rem;font-weight:bold;color:#fff;background-color:#255c43;}
+.btn-add	{width:50px;line-height:1.2;font-size:4.0rem;font-weight:bold;color:#fff;background-color:#41B883;}
+.btn-remove	{width:50px;line-height:1.2;font-size:4.0rem;font-weight:bold;color:#fff;background-color:#255c43;}
 /* 
 $vue-light: #41B883;
 $vue-dark: #35495E;
