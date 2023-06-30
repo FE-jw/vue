@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<ul>
+		<transition-group tag="ul" name="list">
 			<li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item">
 				<button type="button" class="checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem, index)">체크</button>
 				<span v-bind:class="{textCompleted: todoItem.completed}" class="item">
@@ -8,7 +8,7 @@
 				</span>
 				<button type="button" class="removeBtn" v-on:click="removeTodo(todoItem, index)">-</button>
 			</li>
-		</ul>
+		</transition-group>
 	</div>
 </template>
 
@@ -35,4 +35,13 @@ li ~ li	{margin-top:0.5rem;}
 .textCompleted	{color:#ccc;text-decoration:line-through;}
 .checkBtn	{color:#fff;background-color:#000;}
 .checkBtnCompleted	{color:#000;background-color:#ccc;}
+
+/* 리스트 아이템 Transition Test */
+.list-enter-active, .list-leave-active {
+	transition: all 0.3s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
 </style>

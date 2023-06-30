@@ -2,14 +2,21 @@
 	<div class="inputBox">
 		<input type="text" placeholder="할 일 입력" v-model="newTodoItem" v-on:keyup.enter="addTodo">
 		<button type="button" class="addBtn" v-on:click="addTodo">+</button>
+		<modal-default v-if="showModal" @close="showModal = false">
+			<h3 slot="header">저기요!!</h3>
+			<p slot="body">뭐라도 좀 입력을 해주시겠습니까?</p>
+		</modal-default>
 	</div>
 </template>
 
 <script>
+import ModalDefault from './common/ModalDefault.vue';
+
 export default {
-	data: function(){
+	data(){
 		return	{
-			newTodoItem: ''
+			newTodoItem: '',
+			showModal: false
 		}
 	},
 	methods: {
@@ -17,11 +24,16 @@ export default {
 			if(this.newTodoItem !== ''){
 				this.$emit('addTodoItem', this.newTodoItem);
 				this.clearInput();
+			}else{
+				this.showModal = !this.showModal;
 			}
 		},
 		clearInput: function(){
 			this.newTodoItem = '';
 		}
+	},
+	components: {
+		'modal-default': ModalDefault
 	}
 }
 </script>
