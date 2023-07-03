@@ -1,7 +1,7 @@
 <template>
 	<div id="app" ref="app" :style="this.mainColor">
 		<figure>
-			<img :src="this.currentCat" alt="" ref="catImg">
+			<img :src="this.currentCat" alt="">
 		</figure>
 		<div class="btn-wrap">
 			<button type="button" class="btn-cat" @click="callCat">야옹~</button>
@@ -44,12 +44,11 @@ export default {
 			});
 		},
 		changeColor(){
-			const image = this.$refs.catImg;
 			const colorThief = new ColorThief();
 			const img = new Image();
 
 			img.crossOrigin = 'Anonymous';
-			img.src = image.src;
+			img.src = this.currentCat;
 			img.onload = () => {
 				const color = colorThief.getColor(img);
 				this.mainColor = `background-color:rgb(${color[0]}, ${color[1]}, ${color[2]})`;
