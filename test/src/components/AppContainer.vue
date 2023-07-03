@@ -5,8 +5,10 @@
 			v-on:upNum="increaseNum"
 			v-on:resetNum="resetNum"></page-emit>
 		num 값은 {{ num }}입니다.
-		<page-form v-on:infoSubmit="submit"></page-form>
+		<page-form @:infoSubmit="submit"></page-form>
 		<page-todo></page-todo>
+		<page-write @onPosting="posting"></page-write>
+		<page-posts :posts="posts"></page-posts>
 	</main>
 </template>
 
@@ -14,29 +16,61 @@
 import PageEmit from '../pages/PageEmit.vue';
 import PageForm from '../pages/PageForm.vue';
 import PageTodo from '../pages/PageTodo.vue';
+import PageWrite from '../pages/PageWrite.vue';
+import PagePosts from '../pages/PagePosts.vue';
 
 export default {
 	props: ['propsdata'],
 	data(){
 		return{
-			num: 0
+			num: 0,
+			posts: []
 		}
 	},
 	components: {
 		'page-emit': PageEmit,
 		'page-form': PageForm,
-		'page-todo': PageTodo
+		'page-todo': PageTodo,
+		'page-write': PageWrite,
+		'page-posts': PagePosts
+	},
+	created(){
+		if(localStorage.length > 0){
+			for (let idx = 0; idx < localStorage.length; idx++) {
+				this.posts.push(
+					JSON.parse(
+						localStorage.getItem(
+							localStorage.key(idx)
+						)
+					)
+				);
+			}
+		}
 	},
 	methods: {
-		increaseNum: function(){
+		increaseNum(){
 			this.num++;
 		},
-		resetNum: function(){
+		resetNum(){
 			this.num = 0;
 		},
-		submit: function(num){
+		submit(num){
 			console.log(
 				`AppContainer에서 inpNum을 전달받음. 값은 ${num} 입니다.`
+			);
+		},
+		posting(postTit, postDesc){
+			const postObj = {
+				id: Date.now(),
+				tit: postTit,
+				desc: postDesc
+			};
+
+			localStorage.setItem(postObj.id, JSON.stringify(postObj));
+			this.posts.push(
+				JSON.parse(
+					localStorage.getItem(postObj.id)
+				)
 			);
 		}
 	}
