@@ -6,12 +6,8 @@
 </template>
 
 <script>
-import CommonBtn from '../components/CommonBtn.vue'
-
 export default {
-	components: {
-		'common-btn': CommonBtn
-	}
+	
 }
 </script>
 

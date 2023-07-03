@@ -12,17 +12,12 @@
 </template>
 
 <script>
-import CommonBtn from '../components/CommonBtn.vue';
-
 export default {
 	data(){
 		return{
 			todoLists: [],
 			divide: 0
 		}
-	},
-	components: {
-		'common-btn': CommonBtn
 	},
 	created(){
 		fetch('https://jsonplaceholder.typicode.com/todos')

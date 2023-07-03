@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import CommonBtn from '../components/CommonBtn.vue';
-
 export default {
 	data: function(){
 		return	{
@@ -19,9 +17,6 @@ export default {
 		infoSubmit: function(num){
 			this.$emit('infoSubmit', num);
 		}
-	},
-	components: {
-		'common-btn': CommonBtn
 	}
 }
 </script>
