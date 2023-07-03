@@ -1,6 +1,6 @@
 <template>
-	<div class="wrap">
-		<app-header></app-header>
+	<div class="wrap" :data-theme="this.theme">
+		<app-header @onChangeTheme="changeTheme"></app-header>
 		<app-content v-bind:propsdata="lang"></app-content>
 		<app-footer></app-footer>
 	</div>
@@ -15,13 +15,23 @@ export default {
 	name: 'App',
 	data: function(){
 		return{
-			lang: document.documentElement.lang
+			lang: document.documentElement.lang,
+			theme: 'dark'
 		}
 	},
 	components: {
 		'app-header': AppHeader,
 		'app-content': AppContainer,
 		'app-footer': AppFooter
+	},
+	methods: {
+		changeTheme(){
+			if(this.theme === 'dark'){
+				this.theme = 'light';
+			}else{
+				this.theme = 'dark';
+			}
+		}
 	}
 }
 </script>
@@ -32,8 +42,9 @@ export default {
 
 *	{margin:0;padding:0;}
 html	{-webkit-text-size-adjust:none;font-size:10px;}
-body	{background-color:#111;}
 button	{border:0;font-family:inherit;font-size:1.4rem;font-weight:inherit;background:none;cursor:pointer;}
-#app	{line-height:1.3;font-family:'Pretendard', Arial, Helvetica, sans-serif;font-size:1.4rem;font-weight:200;color:#fff;}
-.wrap	{display:flex;flex-direction:column;min-height:100vh;}
+.wrap	{display:flex;flex-direction:column;min-height:100vh;line-height:1.3;font-family:'Pretendard', Arial, Helvetica, sans-serif;font-size:1.4rem;font-weight:200;
+	&[data-theme='dark']	{color:#fff;background-color:#111;}
+	&[data-theme='light']	{color:#111;background-color:#fff;}
+}
 </style>

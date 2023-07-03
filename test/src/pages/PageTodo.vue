@@ -25,7 +25,7 @@ export default {
 		.then(json => {
 			this.todoLists = json;
 		});
-	}	,
+	},
 	methods: {
 		changeList(){
 			if(this.divide + 10 < 200){
@@ -46,5 +46,6 @@ export default {
 		.num	{padding-right:1.0rem;}
 		.todo	{font-size:1.6rem;}
 	}
+	button	{margin:1.0rem 0 0;}
 }
 </style>

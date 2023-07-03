@@ -22,5 +22,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-input	{height:3.0rem;border:none;border-radius:0;}
+input	{height:3.0rem;border:1px solid #000;border-radius:0;}
 </style>

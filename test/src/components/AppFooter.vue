@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/scss/color';
 
 .footer	{padding:2.0rem;border-top:1px solid rgba($vue-light, 0.2);
