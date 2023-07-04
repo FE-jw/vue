@@ -51,15 +51,6 @@ export default {
 			this.todoItems = [];
 		}
 	},
-	created: function(){
-		if(localStorage.length){
-			for (let i = 0; i < localStorage.length; i++) {
-				this.todoItems.push(
-					JSON.parse(localStorage.getItem(localStorage.key(i)))
-				);
-			}
-		}
-	},
 	components: {
 		// 컴포넌트 태그명: 컴포넌트 내용
 		'TodoHeader': TodoHeader,
