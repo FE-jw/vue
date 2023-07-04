@@ -1,12 +1,15 @@
 <template>
 	<div id="app" :style="this.colorInit">
 		<div class="wrap">
+			<header>
+				<h1>Cute Cat</h1>
+			</header>
 			<figure>
 				<img :src="this.currentCat" alt="">
 			</figure>
 			<div class="btn-wrap">
-				<button type="button" class="btn-cat" @click="callCat">야옹~</button>
-				<button type="button" class="ico-sound" @click="toggleMuted" :class="{inactive: this.muted}">
+				<button type="button" class="btn-cat" @click="catCrying">야옹~</button>
+				<button type="button" class="ico-sound" @click="toggleMuted" :class="{inactive: this.muted}" title="음소거">
 					<ico-sound></ico-sound>
 				</button>
 				<a href="#" download class="btn-down" @click.prevent="downloadImage">다운받기</a>
@@ -43,19 +46,16 @@ export default {
 				this.currentCat = this.domain + res.data.url;
 				this.download = this.domain + res.data.url + '.' + this.type;
 				this.file = res.data.file;
-
 				this.changeColor();
-
-				if(!this.muted){
-					const src = './assets/cat.mp3';
-
-					if(src){
-						const audio = new Audio(src);
-						audio.src = ;
-						audio.play();
-					}
-				}
 			});
+		},
+		catCrying(){
+			this.callCat();
+
+			if(!this.muted){
+				const audio = new Audio('https://cdn.jsdelivr.net/gh/fe-jw/vue/intermediate/cutecat/src/assets/cat.mp3');
+				audio.play();
+			}
 		},
 		changeColor(){
 			const colorThief = new ColorThief();
@@ -96,12 +96,14 @@ button	{border:0;font-family:inherit;font-size:1.4rem;font-weight:inherit;backgr
 }
 #app:before	{opacity:0.8;content:'';width:100%;height:100%;position:fixed;left:0;top:0;background-color:rgb(var(--bg-color));backdrop-filter:blur(10px);transition:background-color 0.3s;}
 .wrap	{position:relative;z-index:10;}
+header	{display:flex;justify-content:center;}
+header h1	{margin-bottom:2.0rem;padding:0.5rem 2.0rem;font-size:4.0rem;font-weight:800;color:#fff;background-color:rgba(0, 0, 0, 0.3);}
 
-figure	{display:block;width:70vw;max-width:640px;height:60vh;height:60dvh;margin:0 auto;}
+figure	{display:block;width:70vw;max-width:1280px;height:60vh;height:60dvh;margin:0 auto;}
 figure img	{width:100%;height:100%;border:0;object-fit:cover;}
-.btn-wrap	{display:flex;justify-content:center;align-items:center;margin-top:3.0rem;}
+.btn-wrap	{display:flex;justify-content:center;align-items:center;margin-top:3.0rem;font-weight:500;}
 .btn-cat	{height:4.0rem;padding:0 1.0rem;font-size:1.6rem;color:#000;background-color:#fff;box-sizing:border-box;}
-.btn-down	{display:inline-flex;align-items:center;height:4.0rem;margin:0 2.0rem;padding:0 1.0rem;font-size:1.6rem;color:#000;text-decoration:none;vertical-align:top;background-color:#fff;box-sizing:border-box;}
+.btn-down	{display:inline-flex;align-items:center;height:4.0rem;margin:0 2.0rem;padding:0 1.0rem;font-size:1.6rem;font-weight:500;color:#000;text-decoration:none;vertical-align:top;background-color:#fff;box-sizing:border-box;}
 .ico-sound	{width:3.0rem;height:3.0rem;margin-left:0.5rem;position:relative;}
 .ico-sound svg	{width:100%;height:100%;}
 .ico-sound svg path	{fill:#fff;}
