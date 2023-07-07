@@ -86,7 +86,7 @@ export default {
 			this.callDog();
 
 			if(!this.muted){
-				const audio = new Audio('https://t1.daumcdn.net/cfile/tistory/99CC98395CE6F54B0A');
+				const audio = new Audio('https://cdn.jsdelivr.net/gh/fe-jw/vue/cutedog/src/assets/dog.mp3');
 				audio.play();
 			}
 		},
