@@ -2,13 +2,13 @@
 	<div class="wrap" :style="this.colorInit">
 		<div class="container">
 			<header>
-				<h1>Cute D<ico-dog-title></ico-dog-title>g</h1>
+				<h1>Cute <ico-cat-title></ico-cat-title>at</h1>
 			</header>
 			<section class="container">
 				<div class="img_wrap" :class="{loading: this.loading}">
-					<ico-loading class="dog-loading" v-if="this.loading"></ico-loading>
+					<ico-loading class="cat-loading" v-if="this.loading"></ico-loading>
 					<figure>
-						<img :src="this.currentDog" alt="">
+						<img :src="this.currentCat" alt="">
 					</figure>
 					<button type="button" class="btn-muted" title="음소거" :class="{muted: this.muted}" @click="toggleMuted">
 						<ico-volumn></ico-volumn>
@@ -18,10 +18,10 @@
 						<ico-download></ico-download>
 					</a>
 				</div>
-				<button type="button" class="btn-next" @click="dogCrying">
-					<ico-dog></ico-dog>
+				<button type="button" class="btn-next" @click="catCrying">
+					<ico-cat></ico-cat>
 					NEXT
-					<ico-dog></ico-dog>
+					<ico-cat></ico-cat>
 				</button>
 			</section>
 		</div>
@@ -31,15 +31,17 @@
 <script>
 import ColorThief from 'colorthief';
 import IcoDownload from './components/IcoDownload.vue';
-import IcoDog from './components/IcoDog.vue';
-import IcoDogTitle from './components/IcoDogTitle.vue';
+import IcoCat from './components/IcoCat.vue';
+import IcoCatTitle from './components/IcoCatTitle.vue';
 import IcoLoading from './components/IcoLoading.vue';
 import IcoVolumn from './components/IcoVolumn.vue';
 
 export default {
 	data(){
 		return{
-			currentDog: '',
+			domain: 'https://cataas.com',
+			currentCat: '',
+			type: '',
 			fileName: '',
 			colorInit: '',
 			loading: false,
@@ -47,19 +49,18 @@ export default {
 		}
 	},
 	created(){
-		this.callDog();
+		this.callCat();
 	},
 	methods: {
-		callDog(){
+		callCat(){
 			if(!this.loading){
 				this.loading = true;
-				fetch('https://dog.ceo/api/breeds/image/random')
+				fetch('https://cataas.com/cat?json=true')
 				.then((response) => response.json())
 				.then((data) => {
-					const domain = 'https://images.dog.ceo/breeds/';
-	
-					this.currentDog = data.message;
-					this.fileName = data.message.replace(domain, '').split('/')[1];
+					this.type = data.mimetype.replace('image/', '');
+					this.currentCat = this.domain + data.url;
+					this.fileName = data.file;
 					this.chageColor();
 				});
 			}
@@ -69,24 +70,24 @@ export default {
 			const img = new Image();
 
 			img.crossOrigin = 'Anonymous';
-			img.src = this.currentDog;
+			img.src = this.currentCat;
 			img.addEventListener('load', () => {
 				const color = colorThief.getColor(img);
-				this.colorInit = `background-image:url(${this.currentDog});--bg-color: rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`;
+				this.colorInit = `background-image:url(${this.currentCat});--bg-color: rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`;
 				this.loading = false;
 			});
 			img.addEventListener('error', () => {
 				if(confirm('오류가 발생했습니다. 다시 시도하시겠습니까?')){
 					this.loading = false;
-					this.callDog();
+					this.callCat();
 				}
 			});
 		},
-		dogCrying(){
-			this.callDog();
+		catCrying(){
+			this.callCat();
 
 			if(!this.muted){
-				const audio = new Audio('https://cdn.jsdelivr.net/gh/fe-jw/vue/cutedog/src/assets/dog.mp3');
+				const audio = new Audio('https://cdn.jsdelivr.net/gh/fe-jw/vue/cutecat/src/assets/cat.mp3');
 				audio.play();
 			}
 		},
@@ -94,7 +95,7 @@ export default {
 			this.muted = !this.muted;
 		},
 		async downloadImage(){
-			const blob = await (await fetch(this.currentDog)).blob();
+			const blob = await (await fetch(this.currentCat)).blob();
 			const url = URL.createObjectURL(blob);
 			Object.assign(document.createElement('a'), { href: url, download: this.fileName }).click();
 			URL.revokeObjectURL(url);
@@ -102,8 +103,8 @@ export default {
 	},
 	components: {
 		'ico-download': IcoDownload,
-		'ico-dog': IcoDog,
-		'ico-dog-title': IcoDogTitle,
+		'ico-cat': IcoCat,
+		'ico-cat-title': IcoCatTitle,
 		'ico-loading': IcoLoading,
 		'ico-volumn': IcoVolumn
 	}
@@ -132,8 +133,8 @@ button	{border:0;border-radius:0;cursor:pointer;}
 	.container	{position:relative;}
     header	{@extend .flex;
 		h1	{@extend .flex;padding:0.5rem 4.0rem;font-size:6.0rem;font-weight:800;background-color:rgba(#000, 0.5);
-			svg	{width:4.0rem;height:4.0rem;transform:translateY(0.5rem);
-				:deep(path)	{fill:#fff;}
+			svg	{width:7.0rem;height:7.0rem;margin-right:-1.0rem;
+				:deep(path)	{stroke:#fff;}
 			}
 		}
 	}
@@ -142,8 +143,7 @@ button	{border:0;border-radius:0;cursor:pointer;}
 		&.loading	{
 			&:before	{opacity:1;visibility:visible;}
 		}
-		.dog-loading	{
-			width:10.0rem;height:10.0rem;margin:-5.0rem 0 0 -5.0rem;position:absolute;left:50%;top:50%;animation:loading 0.2s linear infinite alternate;}
+		.cat-loading	{width:10.0rem;height:10.0rem;margin:-5.0rem 0 0 -5.0rem;position:absolute;left:50%;top:50%;animation:loading 0.2s linear infinite alternate;}
 		figure	{overflow:hidden;width:70vw;min-width:320px;max-width:1280px;height:70vh;height:70dvh;border:0.2rem solid #fff;border-radius:2.0rem;box-sizing:border-box;}
 		img	{width:100%;height:100%;vertical-align:top;object-fit:cover;
 			&[src='']	{visibility:hidden;}
