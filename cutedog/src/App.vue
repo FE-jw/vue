@@ -14,7 +14,7 @@
 						<ico-volumn></ico-volumn>
 						음소거
 					</button>
-					<a class="btn-download" href="#" @click.prevent="downloadImage" title="download">
+					<a class="btn-download" href="#" @click.prevent="downloadImage" title="저장하기">
 						<ico-download></ico-download>
 					</a>
 				</div>
