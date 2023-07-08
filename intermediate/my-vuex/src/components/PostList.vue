@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h2 class="tit">리스트</h2>
+		<h2 class="tit" v-if="this.$store.state.posts.length > 0">리스트</h2>
 		<ul class="list">
 			<li v-for="post in this.$store.state.posts" :key="post.id" @click="deletePosting(post.id)">
 				<h3 class="post-tit">{{ post.title }}</h3>
@@ -14,8 +14,8 @@
 <script>
 export default {
 	methods: {
-		deletePosting(date){
-			this.$store.commit('onDelete', date);
+		deletePosting(id){
+			this.$store.commit('onDelete', id);
 		}
 	}
 }

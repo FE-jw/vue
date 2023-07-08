@@ -3,34 +3,30 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-const storage = {
-	fetch(){
-		const tempArr = [];
+const storage = () => {
+	const tempArr = [];
 
-		if(localStorage.length){
-			for (let index = 0; index < localStorage.length; index++) {
-				tempArr.push(
-					JSON.parse(
-						localStorage.getItem(
-							localStorage.key(index)
-						)
+	if(localStorage.length){
+		for (let i = 0; i < localStorage.length; i++) {
+			tempArr.push(
+				JSON.parse(
+					localStorage.getItem(
+						localStorage.key(i)
 					)
-				);
-			}
+				)
+			);
 		}
-		
-		return tempArr;
 	}
+	
+	return tempArr;
 };
 
 export const store = new Vuex.Store({
 	state: {
-		posts: storage.fetch()
+		posts: storage()
 	},
 	mutations: {
 		onUpload(state, payload){
-			console.log(payload);
-			
 			// 로컬 스토리지 저장
 			localStorage.setItem(
 				payload.id,
@@ -41,14 +37,14 @@ export const store = new Vuex.Store({
 			state.posts.push(payload);
 		},
 		onDelete(state, payload){
-			const date = payload;
+			const id = payload;
 			
 			// 로컬 스토리지에서 항목 삭제
-			localStorage.removeItem(date);
+			localStorage.removeItem(id);
 
 			// 포스팅 배열 filter
 			state.posts = state.posts.filter(
-				post => post.id != date
+				post => post.id != id
 			);
 		}
 	}
