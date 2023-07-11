@@ -18,11 +18,16 @@
 						<ico-download></ico-download>
 					</a>
 				</div>
-				<button type="button" class="btn-next" @click="catCrying">
-					<ico-cat></ico-cat>
-					NEXT
-					<ico-cat></ico-cat>
-				</button>
+				<div class="btn-wrap">
+					<button type="button" class="btn-next" @click="catCrying('prev')" v-if="this.currentIndex > 1">
+						<ico-cat></ico-cat>
+						이전
+					</button>
+					<button type="button" class="btn-next" @click="catCrying('next')">
+						다음
+						<ico-cat></ico-cat>
+					</button>
+				</div>
 			</section>
 		</div>
 	</div>
@@ -40,32 +45,54 @@ export default {
 	data(){
 		return{
 			domain: 'https://cataas.com',
-			currentCat: '',
-			type: '',
-			fileName: '',
+			cats: [],
 			colorInit: '',
 			loading: false,
-			muted: true
+			muted: true,
+			currentIndex: 0,
+			currentCat: ''
 		}
 	},
 	created(){
-		this.callCat();
+		this.addCats();
 	},
 	methods: {
-		callCat(){
+		callCat(direction){
 			if(!this.loading){
 				this.loading = true;
-				fetch('https://cataas.com/cat?json=true')
-				.then((response) => response.json())
-				.then((data) => {
-					this.type = data.mimetype.replace('image/', '');
-					this.currentCat = this.domain + data.url;
-					this.fileName = data.file;
-					this.chageColor();
-				});
+				
+				if(direction == 'prev'){
+					this.currentIndex--;
+					this.currentCat = this.cats[this.currentIndex - 1].url;
+					this.changeColor();
+				}else if(direction == 'next'){
+					if(this.currentIndex == this.cats.length){
+						this.addCats();
+					}else{
+						this.currentIndex++;
+						this.currentCat = this.cats[this.currentIndex - 1].url;
+						this.changeColor();
+					}
+				}
 			}
 		},
-		chageColor(){
+		addCats(){
+			fetch('https://cataas.com/cat?json=true')
+			.then((response) => response.json())
+			.then((data) => {
+				const catObj = {
+					type: data.mimetype.replace('image/', ''),
+					url: this.domain + data.url,
+					fileName: data.file
+				};
+
+				this.cats.push(catObj);
+				this.currentIndex++;
+				this.currentCat = catObj.url;
+				this.changeColor();
+			});
+		},
+		changeColor(){
 			const colorThief = new ColorThief();
 			const img = new Image();
 
@@ -73,7 +100,8 @@ export default {
 			img.src = this.currentCat;
 			img.addEventListener('load', () => {
 				const color = colorThief.getColor(img);
-				this.colorInit = `background-image:url(${this.currentCat});--bg-color: rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`;
+
+				this.colorInit = `background-image:url(${img.src});--bg-color: rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`;
 				this.loading = false;
 			});
 			img.addEventListener('error', () => {
@@ -83,8 +111,8 @@ export default {
 				}
 			});
 		},
-		catCrying(){
-			this.callCat();
+		catCrying(direction){
+			this.callCat(direction);
 
 			if(!this.muted){
 				const audio = new Audio('https://cdn.jsdelivr.net/gh/fe-jw/vue/cutecat/src/assets/cat.mp3');
@@ -95,9 +123,9 @@ export default {
 			this.muted = !this.muted;
 		},
 		async downloadImage(){
-			const blob = await (await fetch(this.currentCat)).blob();
+			const blob = await (await fetch(this.cats[this.currentIndex]).url).blob();
 			const url = URL.createObjectURL(blob);
-			Object.assign(document.createElement('a'), { href: url, download: this.fileName }).click();
+			Object.assign(document.createElement('a'), { href: url, download: this.cats[this.currentIndex].fileName }).click();
 			URL.revokeObjectURL(url);
 		}
 	},
@@ -158,8 +186,11 @@ button	{border:0;border-radius:0;cursor:pointer;}
 			svg	{width:60%;height:60%;}
 		}
 	}
-	.btn-next	{@extend .flex;width:50%;min-width:320px;height:8.0rem;margin:2.0rem auto 0;border:0.2rem solid #000;border-radius:0.8rem;line-height:1.2;font-family:inherit;font-size:2.4rem;font-weight:600;color:#000;background-color:#fff;
-		svg	{width:3.0rem;height:3.0rem;margin:0 1.0rem;}
+	.btn-wrap	{display:flex;justify-content:space-between;max-width:500px;margin:2.0rem auto 0;
+		button	{@extend .flex;width:calc(50% - 1.0rem);height:8.0rem;border:0.2rem solid #000;border-radius:0.8rem;line-height:1.2;font-family:inherit;font-size:2.4rem;font-weight:600;color:#000;background-color:#fff;
+			svg	{width:3.0rem;height:3.0rem;margin:0 1.0rem;}
+			&:only-child	{width:100%;}
+		}
 	}
 }
 
