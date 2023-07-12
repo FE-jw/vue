@@ -9,6 +9,7 @@
 		<page-todo></page-todo>
 		<page-write @onPosting="posting"></page-write>
 		<page-posts :posts="posts"></page-posts>
+		<page-route></page-route>
 	</main>
 </template>
 
@@ -18,6 +19,7 @@ import PageForm from '../pages/PageForm.vue';
 import PageTodo from '../pages/PageTodo.vue';
 import PageWrite from '../pages/PageWrite.vue';
 import PagePosts from '../pages/PagePosts.vue';
+import PageRoute from '../pages/PageRoute.vue';
 
 export default {
 	props: ['propsdata'],
@@ -32,7 +34,8 @@ export default {
 		'page-form': PageForm,
 		'page-todo': PageTodo,
 		'page-write': PageWrite,
-		'page-posts': PagePosts
+		'page-posts': PagePosts,
+		'page-route': PageRoute
 	},
 	created(){
 		if(localStorage.length > 0){

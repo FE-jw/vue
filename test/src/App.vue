@@ -3,6 +3,11 @@
 		<app-header @onChangeTheme="changeTheme"></app-header>
 		<app-content v-bind:propsdata="lang"></app-content>
 		<app-footer></app-footer>
+		<nav>
+			<router-link :to="{name: 'RouteHome'}">Home</router-link>
+			<router-link :to="{name: 'RouteAbout'}">About</router-link>
+			<router-link :to="{name: 'RouteIntro'}">Intro</router-link>
+		</nav>
 	</div>
 </template>
 
