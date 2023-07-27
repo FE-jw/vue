@@ -1,5 +1,5 @@
 <template>
-	<div class="wrap" :style="this.colorInit">
+	<div class="wrap" :style="this.bgInit">
 		<div class="container">
 			<header>
 				<h1>Cute <ico-cat-title></ico-cat-title>at</h1>
@@ -19,11 +19,11 @@
 					</a>
 				</div>
 				<div class="btn-wrap">
-					<button type="button" class="btn-next" @click="catCrying('prev')" v-if="this.currentIndex > 1">
+					<button type="button" class="btn-next" @click="callCat('prev')" v-if="this.currentIndex > 0">
 						<ico-cat></ico-cat>
 						이전
 					</button>
-					<button type="button" class="btn-next" @click="catCrying('next')">
+					<button type="button" class="btn-next" @click="callCat('next')">
 						다음
 						<ico-cat></ico-cat>
 					</button>
@@ -44,17 +44,16 @@ import IcoVolumn from './components/IcoVolumn.vue';
 export default {
 	data(){
 		return{
-			domain: 'https://cataas.com',
-			cats: [],
-			colorInit: '',
-			loading: false,
-			muted: true,
-			currentIndex: 0,
-			currentCat: ''
+			cats: [],	// 이전, 다음 고양이들의 정보를 담을 배열
+			bgInit: '',	// background 정보 초기화
+			loading: false,	// 고양이 이미지 로딩중일 때 true
+			muted: true,	// 음소거 toggle
+			currentIndex: 0,	// cats 배열에서 현재 노출되는 이미지의 index
+			currentCat: ''	// 현재 노출되는 고양이 정보 url
 		}
 	},
 	created(){
-		this.addCats();
+		this.addCat();
 	},
 	methods: {
 		callCat(direction){
@@ -63,34 +62,49 @@ export default {
 				
 				if(direction == 'prev'){
 					this.currentIndex--;
-					this.currentCat = this.cats[this.currentIndex - 1].url;
+					this.currentCat = this.cats[this.currentIndex].url;
 					this.changeColor();
 				}else if(direction == 'next'){
+					this.currentIndex++;
+
 					if(this.currentIndex == this.cats.length){
-						this.addCats();
+						this.addCat();
 					}else{
-						this.currentIndex++;
-						this.currentCat = this.cats[this.currentIndex - 1].url;
+						this.currentCat = this.cats[this.currentIndex].url;
 						this.changeColor();
 					}
 				}
+
+				this.cryCat();
 			}
 		},
-		addCats(){
+		addCat(){
+			if(!this.loading){
+				this.loading = true;
+			}
+
 			fetch('https://cataas.com/cat?json=true')
 			.then((response) => response.json())
 			.then((data) => {
 				const catObj = {
 					type: data.mimetype.replace('image/', ''),
-					url: this.domain + data.url,
+					url: 'https://cataas.com' + data.url,
 					fileName: data.file
 				};
 
 				this.cats.push(catObj);
-				this.currentIndex++;
 				this.currentCat = catObj.url;
 				this.changeColor();
+			})
+			.catch(() => {
+				alert('문제가 생겼습니다. 잠시 후 다시 시도해주세요.');
 			});
+		},
+		cryCat(){
+			if(!this.muted){
+				const audio = new Audio('https://cdn.jsdelivr.net/gh/fe-jw/vue/cutecat/src/assets/cat.mp3');
+				audio.play();
+			}
 		},
 		changeColor(){
 			const colorThief = new ColorThief();
@@ -98,26 +112,20 @@ export default {
 
 			img.crossOrigin = 'Anonymous';
 			img.src = this.currentCat;
+
 			img.addEventListener('load', () => {
 				const color = colorThief.getColor(img);
 
-				this.colorInit = `background-image:url(${img.src});--bg-color: rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`;
+				this.bgInit = `background-image:url(${img.src});--bg-color: rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`;
 				this.loading = false;
 			});
+
 			img.addEventListener('error', () => {
 				if(confirm('오류가 발생했습니다. 다시 시도하시겠습니까?')){
 					this.loading = false;
 					this.callCat();
 				}
 			});
-		},
-		catCrying(direction){
-			this.callCat(direction);
-
-			if(!this.muted){
-				const audio = new Audio('https://cdn.jsdelivr.net/gh/fe-jw/vue/cutecat/src/assets/cat.mp3');
-				audio.play();
-			}
 		},
 		toggleMuted(){
 			this.muted = !this.muted;
@@ -157,7 +165,7 @@ button	{border:0;border-radius:0;cursor:pointer;}
 	--bg-color: rgba(0, 0, 0, 0.6);
 
 	@extend .flex;width:100%;height:100vh;height:100dvh;background-repeat:no-repeat;background-color:#111;background-position:50% 50%;background-size:cover;
-	&:before	{content:'';width:100vw;height:100vh;height:100dvh;position:fixed;left:0;top:0;background-color:var(--bg-color);backdrop-filter:blur(10px);transition:background-color 0.3s;}
+	&:before	{content:'';width:100vw;height:100vh;height:100dvh;position:fixed;left:0;top:0;background-color:var(--bg-color);backdrop-filter:blur(6px);transition:background-color 0.3s;}
 	.container	{position:relative;}
     header	{@extend .flex;
 		h1	{@extend .flex;padding:0.5rem 4.0rem;font-size:6.0rem;font-weight:800;background-color:rgba(#000, 0.5);
