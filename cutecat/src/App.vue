@@ -95,6 +95,9 @@ export default {
 				this.cats.push(catObj);
 				this.currentCat = catObj.url;
 				this.changeColor();
+			})
+			.catch(() => {
+				alert('문제가 생겼습니다. 잠시 후 다시 시도해주세요.');
 			});
 		},
 		cryCat(){
