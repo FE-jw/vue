@@ -14,6 +14,9 @@
 						<ico-volumn></ico-volumn>
 						음소거
 					</button>
+					<button type="button" class="btn-like" @click="addLike">
+						<ico-like></ico-like>
+					</button>
 					<a class="btn-download" href="#" @click.prevent="downloadImage" title="저장하기">
 						<ico-download></ico-download>
 					</a>
@@ -40,6 +43,7 @@ import IcoCat from './components/IcoCat.vue';
 import IcoCatTitle from './components/IcoCatTitle.vue';
 import IcoLoading from './components/IcoLoading.vue';
 import IcoVolumn from './components/IcoVolumn.vue';
+import IcoLike from './components/IcoLike.vue';
 
 export default {
 	data(){
@@ -49,11 +53,28 @@ export default {
 			loading: false,	// 고양이 이미지 로딩중일 때 true
 			muted: true,	// 음소거 toggle
 			currentIndex: 0,	// cats 배열에서 현재 노출되는 이미지의 index
-			currentCat: ''	// 현재 노출되는 고양이 정보 url
+			currentCat: '',	// 현재 노출되는 고양이 정보 url
+			likes: []	// 좋아요 누른 고양이 정보
 		}
 	},
 	created(){
 		this.addCat();
+
+		const likeArr = [];
+
+		if(localStorage.length){
+			for (let idx = 0; idx < localStorage.length; idx++) {
+				likeArr.push(
+					localStorage.getItem(
+						localStorage.key(idx)
+					)
+				);
+			}
+		}
+
+		this.likes = likeArr;
+
+		console.log(this.likes);
 	},
 	methods: {
 		callCat(direction){
@@ -106,6 +127,18 @@ export default {
 				audio.play();
 			}
 		},
+		addLike(){
+			const key = Date.now();
+			localStorage.setItem(key, this.currentCat);
+
+			/**
+			 * TODO
+			 * 좋아요 리스트 확인 버튼 추가
+			 * 리스트 UI추가
+			 * 로컬 스토리이에 저장된 좋아요 리스트 조회
+			 * 10개 단위로 노출
+			 */
+		},
 		changeColor(){
 			const colorThief = new ColorThief();
 			const img = new Image();
@@ -116,7 +149,7 @@ export default {
 			img.addEventListener('load', () => {
 				const color = colorThief.getColor(img);
 
-				this.bgInit = `background-image:url(${img.src});--bg-color: rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`;
+				this.bgInit = `--bg-img: url(${img.src});--bg-color: rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`;
 				this.loading = false;
 			});
 
@@ -142,7 +175,8 @@ export default {
 		'ico-cat': IcoCat,
 		'ico-cat-title': IcoCatTitle,
 		'ico-loading': IcoLoading,
-		'ico-volumn': IcoVolumn
+		'ico-volumn': IcoVolumn,
+		'ico-like': IcoLike
 	}
 }
 </script>
@@ -164,7 +198,7 @@ button	{border:0;border-radius:0;cursor:pointer;}
 .wrap   {
 	--bg-color: rgba(0, 0, 0, 0.6);
 
-	@extend .flex;width:100%;height:100vh;height:100dvh;background-repeat:no-repeat;background-color:#111;background-position:50% 50%;background-size:cover;
+	@extend .flex;width:100%;height:100vh;height:100dvh;background:#111 var(--bg-img) no-repeat 50% 50%;background-size:cover;
 	&:before	{content:'';width:100vw;height:100vh;height:100dvh;position:fixed;left:0;top:0;background-color:var(--bg-color);backdrop-filter:blur(6px);transition:background-color 0.3s;}
 	.container	{position:relative;}
     header	{@extend .flex;
@@ -175,7 +209,7 @@ button	{border:0;border-radius:0;cursor:pointer;}
 		}
 	}
 	.img_wrap	{margin-top:3.0rem;position:relative;
-		&:before	{opacity:0;visibility:hidden;content:'';width:100%;height:100%;position:absolute;left:0;top:0;background:radial-gradient(ellipse at center,  rgba(#000, 1) 0%,rgba(#000, 0) 100%);transition:all 0.2s;}
+		&:before	{opacity:0;visibility:hidden;content:'';width:100%;height:100%;position:absolute;left:0;top:0;background:radial-gradient(ellipse at center,  rgba(#000, 1) 0%,rgba(#000, 0) 100%);transition:all 0.2s;z-index:10;}
 		&.loading	{
 			&:before	{opacity:1;visibility:visible;}
 		}
@@ -184,13 +218,16 @@ button	{border:0;border-radius:0;cursor:pointer;}
 		img	{width:100%;height:100%;vertical-align:top;object-fit:cover;
 			&[src='']	{visibility:hidden;}
 		}
-		.btn-muted	{width:8.0rem;height:8.0rem;position:absolute;left:2.0rem;bottom:2.0rem;border-radius:50%;border:1px solid #fff;background-color:rgba(#000, 0.8);font-size:0;color:transparent;
+		.btn-muted	{width:8.0rem;height:8.0rem;position:absolute;left:2.0rem;bottom:2.0rem;border-radius:50%;border:1px solid #fff;font-size:0;color:transparent;background-color:rgba(#000, 0.5);
 			svg	{width:60%;height:60%;}
 			&.muted	{
 				&:before	{content:'';width:100%;height:0.2rem;position:absolute;right:0;top:50%;background-color:#fff;transform:rotate(-45deg) scale(0.7);}
 			}
 		}
-		.btn-download	{@extend .flex;width:8.0rem;height:8.0rem;position:absolute;right:2.0rem;bottom:2.0rem;border-radius:50%;border:1px solid #fff;background-color:rgba(#000, 0.8);box-sizing:border-box;
+		.btn-like	{width:8.0rem;height:8.0rem;position:absolute;left:50%;bottom:2.0rem;border-radius:50%;border:1px solid #fff;font-size:0;color:transparent;background-color:rgba(#000, 0.5);transform:translateX(-50%);
+			svg	{width:60%;height:60%;}
+		}
+		.btn-download	{@extend .flex;width:8.0rem;height:8.0rem;position:absolute;right:2.0rem;bottom:2.0rem;border-radius:50%;border:1px solid #fff;background-color:rgba(#000, 0.5);box-sizing:border-box;
 			svg	{width:60%;height:60%;}
 		}
 	}
