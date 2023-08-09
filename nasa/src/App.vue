@@ -24,14 +24,16 @@ import AppForm from './components/AppForm.vue';
 import NasaToday from './components/NasaToday.vue';
 import NasaLogo from './components/svg/NasaLogo.vue';
 import IcoLoading from './components/svg/IcoLoading.vue';
+import { useStore } from 'vuex';
 
 export default {
 	created(){
-		fetch(`https://api.nasa.gov/planetary/apod?api_key=${this.$store.myKey}`)
+		const store = useStore();
+		
+		fetch(`https://api.nasa.gov/planetary/apod?api_key=${store.state.myKey}`)
 		.then((res) => res.json())
 		.then((data) => {
-			this.$store.todayInfo = data;
-			console.log(data);
+			store.state.todayInfo = data;
 		})
 		.catch(() => {
 			alert('문제가 생겼습니다. 잠시 후 다시 시도해주세요.');

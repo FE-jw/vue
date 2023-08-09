@@ -3,20 +3,32 @@
 		<h2>Today's NASA</h2>
 		<div class="img-wrap">
 			<figure>
-				<img :src="this.$store.todayInfo.url" alt="">
+				<img :src="this.info.url" alt="">
 			</figure>
 			<div class="desc">
-				<span class="time">{{ this.$store.todayInfo.date }}</span>
-				<p>{{ this.$store.todayInfo.explanation }}</p>
+				<span class="time">{{ this.info.date }}</span>
+				<p>{{ this.info.explanation }}</p>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	export default {
-		
+import { useStore } from 'vuex';
+
+export default {
+	data(){
+		const store = useStore();
+
+		return{
+			info: {
+				url: store.state.todayInfo.url,
+				date: store.state.todayInfo.date,
+				explanation: store.state.todayInfo.explanation
+			}
+		}
 	}
+}
 </script>
 
 <style lang="scss" scoped>
