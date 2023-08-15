@@ -15,9 +15,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-nav	{display:flex;padding:1.0rem;font-weight:500;color:#fff;background-color:#42b883;
+nav	{display:flex;padding:1.0rem;font-weight:500;color:#fff;background-color:var(--main-dark);
 	a	{padding:0 0.5rem;
-		&.router-link-active	{color:#35495e;}
+		&.router-link-active	{color:var(--main-yellow);}
 	}
 }
 </style>
