@@ -7,29 +7,14 @@
 </template>
 
 <script>
-import { fetchNewsList } from '../api/index.js';
+import { mapGetters } from 'vuex';
 
 export default {
-	data(){
-		return {
-			news: []
-		}
+	computed: {
+		...mapGetters(['news'])
 	},
 	created(){
-		fetchNewsList()
-			.then(res => {
-				this.news = res.data;
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	},
-	components: {
-
+		this.$store.dispatch('FETCH_NEWS');
 	}
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

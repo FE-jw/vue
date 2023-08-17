@@ -7,26 +7,14 @@
 </template>
 
 <script>
-import { fetchJobsList } from '../api/index.js';
+import { mapGetters } from 'vuex';
 
 export default {
-	data(){
-		return {
-			jobs: []
-		}
+	computed: {
+		...mapGetters(['jobs'])
 	},
 	created(){
-		fetchJobsList()
-			.then(res => {
-				this.jobs = res.data;
-			})
-			.catch(error => {
-				console.log(error);
-			});
+		this.$store.dispatch('FETCH_JOBS');
 	}
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

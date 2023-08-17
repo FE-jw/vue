@@ -7,26 +7,22 @@
 </template>
 
 <script>
-import { fetchAsksList } from '../api/index.js';
+import { mapGetters } from 'vuex';
 
 export default {
-	data(){
-		return {
-			ask: []
-		}
+	computed: {
+		// ...mapState({
+			// ask: state => state.ask
+		// })
+
+		// ...mapGetters({
+			// fetchedAsk: 'fetchedAsk'
+		// })
+
+		...mapGetters(['ask'])
 	},
 	created(){
-		fetchAsksList()
-			.then(res => {
-				this.ask = res.data;
-			})
-			.catch(error => {
-				console.log(error);
-			});
+		this.$store.dispatch('FETCH_ASK');
 	}
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
