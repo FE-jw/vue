@@ -1,7 +1,12 @@
 <template>
 	<ul class="hacker-news">
 		<li v-for="item in news" :key="item.id">
-			{{ item.title }}
+			<a :href="item.url" target="_blank">
+				<div class="item">
+					<p class="txt">{{ item.title }}</p>
+					<small v-if="item.user" class="user">{{ item.user }}</small>
+				</div>
+			</a>
 		</li>
 	</ul>
 </template>
