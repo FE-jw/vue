@@ -11,8 +11,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/color';
-
 button	{margin:0.5rem;padding:1.0rem;}
 .wrap	{
 	&[data-theme='dark']	{
