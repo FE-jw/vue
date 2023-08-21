@@ -7,14 +7,8 @@
 	</header>
 </template>
 
-<script>
+<script setup>
 import SvgLogo from './SvgLogo.vue';
-
-export default {
-	components: {
-		SvgLogo
-	}
-}
 </script>
 
 <style lang="scss" scoped>

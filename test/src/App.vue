@@ -1,39 +1,33 @@
 <template>
-	<div class="wrap" :data-theme="this.theme">
+	<div class="wrap" :data-theme="theme">
 		<AppHeader @onChangeTheme="changeTheme"></AppHeader>
-		<AppContainer :propsdata="lang"></AppContainer>
+		<AppContainer :lang="lang"></AppContainer>
 		<AppFooter></AppFooter>
 	</div>
 </template>
 
-<script>
+<script setup>
 import AppHeader from './components/AppHeader.vue';
 import AppContainer from './components/AppContainer.vue';
 import AppFooter from './components/AppFooter.vue';
+import { ref } from 'vue';
 
-export default {
-	name: 'App',
-	data(){
-		return{
-			lang: document.documentElement.lang,
-			theme: 'dark'
-		}
-	},
-	methods: {
-		changeTheme(){
-			if(this.theme === 'dark'){
-				this.theme = 'light';
-			}else{
-				this.theme = 'dark';
-			}
-		}
-	},
-	components: {
-		AppHeader,
-		AppContainer,
-		AppFooter
-	}
+const lang = document.documentElement.lang;
+let theme;
+
+if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+	theme = ref('dark');
+}else{
+	theme = ref('light');
 }
+
+const changeTheme = () => {
+	if(theme.value === 'dark'){
+		theme.value = 'light';
+	}else{
+		theme.value = 'dark';
+	}
+};
 </script>
 
 <style lang="scss">
