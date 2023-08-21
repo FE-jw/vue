@@ -35,6 +35,10 @@ a	{color:inherit;text-decoration:none;}
 .hacker-news	{padding:1.0rem;
 	li	{padding:1.0rem;
 		& ~ li	{border-top:1px solid var(--main-gray);}
+		.item	{display:flex;justify-content:space-between;
+			.txt	{flex:1;padding-right:2.0rem;font-size:1.8rem;}
+			.user	{flex-shrink:0;font-size:1.2rem;color:var(--main-gray);}
+		}
 	}
 }
 </style>

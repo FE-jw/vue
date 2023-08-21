@@ -1,35 +1,25 @@
 <template>
 	<ul class="hacker-news">
 		<li v-for="item in news" :key="item.id">
-			{{ item.title }}
+			<a :href="item.url" target="_blank">
+				<div class="item">
+					<p class="txt">{{ item.title }}</p>
+					<small v-if="item.user" class="user">{{ item.user }}</small>
+				</div>
+			</a>
 		</li>
 	</ul>
 </template>
 
 <script>
-import { fetchNewsList } from '../api/index.js';
+import { mapGetters } from 'vuex';
 
 export default {
-	data(){
-		return {
-			news: []
-		}
+	computed: {
+		...mapGetters(['news'])
 	},
 	created(){
-		fetchNewsList()
-			.then(res => {
-				this.news = res.data;
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	},
-	components: {
-
+		this.$store.dispatch('FETCH_NEWS');
 	}
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
