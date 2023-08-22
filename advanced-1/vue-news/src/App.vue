@@ -1,7 +1,9 @@
 <template>
 	<div id="app">
 		<tool-bar></tool-bar>
-		<router-view></router-view>
+		<transition name="page">
+			<router-view></router-view>
+		</transition>
 	</div>
 </template>
 
@@ -24,7 +26,7 @@ export default {
 :root	{
 	--main-yellow: #fff01e;
 	--main-dark: #111;
-	--main-gray: #ccc;
+	--main-gray: #999;
 }
 
 *	{margin:0;padding:0;list-style:none;}
@@ -40,5 +42,13 @@ a	{color:inherit;text-decoration:none;}
 			.user	{flex-shrink:0;font-size:1.2rem;color:var(--main-gray);}
 		}
 	}
+}
+
+// Router Transition
+.page-enter-active, .page-leave-active {
+  transition: opacity .5s;
+}
+.page-enter, .page-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

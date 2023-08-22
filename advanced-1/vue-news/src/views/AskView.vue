@@ -4,7 +4,9 @@
 			<a :href="item.url" target="_blank">
 				<div class="item">
 					<p class="txt">{{ item.title }}</p>
-					<small v-if="item.user" class="user">{{ item.user }}</small>
+					<router-link :to="`/item/${item.id}`" v-if="item.user">
+						<small class="user">{{ item.user }}</small>
+					</router-link>
 				</div>
 			</a>
 		</li>

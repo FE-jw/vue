@@ -7,5 +7,8 @@ export default {
 	},
 	jobs(state){
 		return state.jobs;
+	},
+	fetchedItem(state){
+		return state.item;
 	}
 };
