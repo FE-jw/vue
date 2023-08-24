@@ -1,12 +1,17 @@
 <template>
 	<ul class="hacker-news">
 		<li v-for="item in jobs" :key="item.id">
-			<a :href="item.url" target="_blank">
-				<div class="item">
-					<p class="txt">{{ item.title }}</p>
-					<small v-if="item.user" class="user">{{ item.user }}</small>
+			<div class="item">
+				<div class="points">
+					{{ item.points || 0 }}
 				</div>
-			</a>
+				<h2 class="tit">
+					<a :href="item.url" target="_blank">{{ item.title }}</a>
+				</h2>
+				<small v-if="item.domain" class="user">
+					<a :href="item.url">{{ item.domain }}</a>
+				</small>
+			</div>
 		</li>
 	</ul>
 </template>

@@ -1,35 +1,30 @@
 <template>
+	<ListItem></ListItem>
+	<!--
 	<ul class="hacker-news">
 		<li v-for="item in ask" :key="item.id">
-			<a :href="item.url" target="_blank">
-				<div class="item">
-					<p class="txt">{{ item.title }}</p>
-					<router-link :to="`/item/${item.id}`" v-if="item.user">
-						<small class="user">{{ item.user }}</small>
-					</router-link>
+			<div class="item">
+				<div class="points">
+					{{ item.points || 0 }}
 				</div>
-			</a>
+				<h2 class="tit">
+					<a :href="item.url" target="_blank">{{ item.title }}</a>
+				</h2>
+				<small class="user" v-if="item.user">
+					<router-link :to="`/item/${item.id}`">{{ item.user }}</router-link>
+				</small>
+			</div>
 		</li>
 	</ul>
+	-->
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import ListItem from '../components/ListItem.vue';
 
 export default {
-	computed: {
-		// ...mapState({
-			// ask: state => state.ask
-		// })
-
-		// ...mapGetters({
-			// fetchedAsk: 'fetchedAsk'
-		// })
-
-		...mapGetters(['ask'])
-	},
-	created(){
-		this.$store.dispatch('FETCH_ASK');
+	components: {
+		ListItem
 	}
 }
 </script>
