@@ -1,12 +1,17 @@
 <template>
 	<ul class="hacker-news">
-		<li v-for="item in this.$store.state.news" :key="item.id">
+		<li v-for="item in listItems" :key="item.id">
 			<div class="item">
 				<div class="points">
 					{{ item.points || 0 }}
 				</div>
 				<h2 class="tit">
-					<a :href="item.url" target="_blank">{{ item.title }}</a>
+					<template v-if="item.domain">
+						<a :href="item.url" target="_blank">{{ item.title }}</a>
+					</template>
+					<template v-else>
+						<router-link :to="`item/${item.id}`">{{ item.title }}</router-link>
+					</template>
 				</h2>
 				<small class="user" v-if="item.user">
 					<router-link :to="`/user/${item.user}`">{{ item.user }}</router-link>
@@ -19,7 +24,17 @@
 <script>
 export default {
 	computed: {
-		
+		listItems(){
+			const name = this.$route.name;
+
+			if(name === 'news'){
+				return this.$store.state.news;
+			}else if(name === 'ask'){
+				return this.$store.state.ask;
+			}else if(name === 'jobs'){
+				return this.$store.state.jobs;
+			}
+		}
 	},
 	created(){
 		const name = this.$route.name;
