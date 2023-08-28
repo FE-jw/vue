@@ -33,6 +33,8 @@ export default {
 				return this.$store.state.ask;
 			}else if(name === 'jobs'){
 				return this.$store.state.jobs;
+			}else{
+				return false;
 			}
 		}
 	},
