@@ -6,15 +6,9 @@ const config = {
 };
 
 // 공통 API 함수 정리
-const fetchNewsList = () => {
-	return axios.get(`${config.baseUrl}news/1.json`);
-}
-const fetchAsksList = () => {
-	return axios.get(`${config.baseUrl}ask/1.json`);
-}
-const fetchJobsList = () => {
-	return axios.get(`${config.baseUrl}jobs/1.json`);
-}
+const fetchList = pageName => {
+	return axios.get(`${config.baseUrl}${pageName}/1.json`);
+};
 const fetchUserInfo = id => {
 	return axios.get(`${config.baseUrl}user/${id}.json`);
 };
@@ -23,9 +17,7 @@ const fetchItemInfo = id => {
 };
 
 export {
-	fetchNewsList,
-	fetchJobsList,
-	fetchAsksList,
+	fetchList,
 	fetchUserInfo,
 	fetchItemInfo
 }
