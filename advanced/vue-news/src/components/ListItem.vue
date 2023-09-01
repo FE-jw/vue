@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.hacker-news	{padding:1.0rem;
+.hacker-news	{padding:1.0rem 2.0rem;
 	li	{padding:1.0rem;
 		& ~ li	{border-top:1px solid var(--main-gray);}
 		.item	{display:flex;justify-content:space-between;align-items:center;
