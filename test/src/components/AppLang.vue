@@ -4,7 +4,7 @@
 		<p>헤어짐 인사: {{ multiLang.bye[store.lang] }}</p>
 		<p v-if="multiLang.txt_1[store.lang]">중간체인 경우 제거됨: {{ multiLang.txt_1[store.lang] }}</p>
 		<p v-if="multiLang.txt_2[store.lang]">영문인 경우 제거됨: {{ multiLang.txt_2[store.lang] }}</p>
-		<common-btn @click="changeLang">언어 변경</common-btn>
+		<common-btn @click="changeLang">언어 변경</common-btn> 현재 언어: {{ store.lang }}
 		<ul class="reward_1">
 			<li v-for="item in multiLang.reward_1" :key="item.id">
 				<span class="reward">{{ item[store.lang] }}</span>

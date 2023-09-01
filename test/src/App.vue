@@ -29,11 +29,12 @@ const popup = usePopup();
 <style lang="scss">
 *	{margin:0;padding:0;}
 html	{-webkit-text-size-adjust:none;font-size:10px;}
-button	{border:0;font-family:inherit;font-size:1.4rem;font-weight:inherit;background:none;cursor:pointer;}
-.wrap	{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;line-height:1.3;font-family:'Pretendard', Arial, Helvetica, sans-serif;font-size:1.4rem;font-weight:200;transition:color 0.2s, background-color 0.2s;
+#app	{line-height:1.3;font-family:'Pretendard', Arial, Helvetica, sans-serif;font-size:1.4rem;font-weight:200;}
+.wrap	{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;transition:color 0.2s, background-color 0.2s;
 	&[data-theme='dark']	{color:#fff;background-color:#111;}
 	&[data-theme='light']	{color:#111;background-color:#fff;}
 }
+button	{border:0;border-radius:0;font-family:inherit;font-size:1.4rem;font-weight:inherit;background:none;cursor:pointer;}
 </style>
 
 <style lang="scss" scoped>
