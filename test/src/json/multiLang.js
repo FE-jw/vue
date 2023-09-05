@@ -38,5 +38,22 @@ export const multiLang = {
 	'txt_2': {
 		'ko': '영문은 제거',
 		'zh-hans': 'no en'
+	},
+	'btn_1': {
+		'ko': {
+			'-1': '보상 받기',	// off
+			'0': '보상 받기',	// on
+			'1': '완료'	// complete
+		},
+		'en': {
+			'-1': 'collect',
+			'0': 'collect',
+			'1': 'complete'
+		},
+		'zh-hans': {
+			'-1': '领取',
+			'0': '领取',
+			'1': '完成'
+		}
 	}
 }

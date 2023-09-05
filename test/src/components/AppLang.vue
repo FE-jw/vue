@@ -6,19 +6,32 @@
 		<p v-if="multiLang.txt_2[store.lang]">영문인 경우 제거됨: {{ multiLang.txt_2[store.lang] }}</p>
 		<common-btn @click="changeLang">언어 변경</common-btn> 현재 언어: {{ store.lang }}
 		<ul class="reward_1">
-			<li v-for="item in multiLang.reward_1" :key="item.id">
+			<li v-for="(item, index) in multiLang.reward_1" :key="index">
 				<span class="reward">{{ item[store.lang] }}</span>
-				<button type="button">보상 받기</button>
+				<button type="button"
+					@click="updateState(index)"
+					:class="{
+						btn_off: btnState[index].value == -1,
+						btn_on: btnState[index].value == 0,
+						btn_complete: btnState[index].value > 0
+					}">{{ multiLang.btn_1[store.lang][btnState[index].value] }}</button>
 			</li>
 		</ul>
 	</div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { useStore } from '@/stores/store.js';
 import { multiLang } from '@/json/multiLang.js';
 
 const store = useStore();
+let btnState = [
+	ref(-1),
+	ref(0),
+	ref(1),
+	ref(-1)
+];
 
 const changeLang = () => {
 	const langState = store.lang;
@@ -32,12 +45,18 @@ const changeLang = () => {
 			break;
 	}
 };
+
+const updateState = index => {
+	btnState[index].value = 1;
+};
 </script>
 
 <style lang="scss" scoped>
 .reward_1	{display:flex;flex-wrap:wrap;gap:2.0rem;list-style:none;
 	li	{flex-shrink:0;width:10.0rem;height:20.0rem;position:relative;background-color:$vue-light;}
 	.reward	{display:flex;justify-content:center;align-items:center;height:4.0rem;font-size:1.6rem;text-align:center;background-color:$vue-dark;}
-	button	{width:100%;height:4.0rem;position:absolute;left:0;bottom:0;font-size:1.6rem;color:inherit;background-color:$vue-dark;}
+	button	{width:100%;height:4.0rem;position:absolute;left:0;bottom:0;font-size:1.6rem;color:inherit;background-color:$vue-dark;
+		&.btn_complete	{color:darken(#fff, 10%);background-color:darken($vue-dark, 10%);}
+	}
 }
 </style>
