@@ -1,6 +1,7 @@
 <template>
 	<nuxt-header></nuxt-header>
-	<slot />
+	<!-- <slot /> -->
+	<nuxt-container></nuxt-container>
 	<nuxt-footer></nuxt-footer>
 </template>
 
