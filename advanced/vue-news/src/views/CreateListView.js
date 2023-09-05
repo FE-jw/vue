@@ -6,6 +6,7 @@ export default function createListView(name){
 	return {
 		// 재사용할 인스턴스(컴포넌트) 옵션들이 들어갈 자리
 		name: name,
+		/*
 		created(){
 			bus.$emit('start:spinner');
 			this.$store.dispatch('FETCH_LIST', this.$route.name)
@@ -13,6 +14,10 @@ export default function createListView(name){
 				.catch(err => {
 					console.log(err);
 				});
+			},
+		*/
+		mounted(){
+			bus.$emit('end:spinner');
 		},
 		render(createElement){
 			return createElement(ListView);
