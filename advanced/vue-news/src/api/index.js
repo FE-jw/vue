@@ -6,8 +6,12 @@ const config = {
 };
 
 // 공통 API 함수 정리
-const fetchList = pageName => {
-	return axios.get(`${config.baseUrl}${pageName}/1.json`);
+const fetchList = async pageName => {
+	try {
+		return await axios.get(`${config.baseUrl}${pageName}/1.json`);
+	} catch (err) {
+		console.log(err);
+	}
 };
 const fetchUserInfo = id => {
 	return axios.get(`${config.baseUrl}user/${id}.json`);
