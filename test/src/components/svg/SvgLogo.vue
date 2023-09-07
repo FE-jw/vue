@@ -5,11 +5,9 @@
 <style lang="scss" scoped>
 svg	{width:5.0rem;height:5.0rem;vertical-align:top;
 	path	{transition:fill 0.2s;}
-	&:hover::v-deep	{
-		path	{
-			&:nth-child(1)	{fill:$vue-dark;}
-			&:nth-child(2)	{fill:$vue-light;}
-		}
+	&:hover	{
+		path:nth-child(1)	{fill:$vue-dark;}
+		path:nth-child(2)	{fill:$vue-light;}
 	}
 }
 </style>
