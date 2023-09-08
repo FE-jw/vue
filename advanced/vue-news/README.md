@@ -1,24 +1,5 @@
 # vue-news
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 외부 라이브러리 모듈화
+* 이유
+	* Vue.js 라이브러리가 없을 때 일반 라이브러리를 결합할 수 있어야 함
