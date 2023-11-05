@@ -1,7 +1,11 @@
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import App from './App.vue';
-import CommonBtn from './components/CommonBtn';
+import CommonBtn from './components/CommonBtn.vue';
 
-createApp(App)
-	.component('common-btn', CommonBtn)	// 전역 컴포넌트 설정
-	.mount('#app');
+const app = createApp(App);
+
+app.use(createPinia());	// pinia store 사용
+app.component('CommonBtn', CommonBtn)	// 전역 컴포넌트 설정
+
+app.mount('#app');

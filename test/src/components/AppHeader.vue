@@ -1,14 +1,17 @@
 <template>
 	<header class="header">
 		<h1 class="vue-tit">
-			<SvgLogo></SvgLogo>
+			<svg-logo></svg-logo>
 		</h1>
-		<common-btn @click="$emit('onChangeTheme')">테마 변경</common-btn>
+		<common-btn @click="store.setTheme">테마 변경</common-btn>
 	</header>
 </template>
 
 <script setup>
-import SvgLogo from './SvgLogo.vue';
+import SvgLogo from '@/components/svg/SvgLogo.vue';
+import { useStore } from '@/stores/store.js';
+
+const store = useStore();
 </script>
 
 <style lang="scss" scoped>
