@@ -1,11 +1,24 @@
 <template>
 	<main class="container">
+		<sta-item class="section" tag="section"><span>aaa</span> section tag</sta-item>
 		<div>
 			{{ cnt }}
 			<common-btn @click="increaseCnt">increaseCnt</common-btn>
 			<common-btn @click="decreaseCnt">decreaseCnt</common-btn>
 			<common-btn @click="resetCnt">resetCnt</common-btn>
 		</div>
+		<StaItem class="section">
+			<input type="text">
+			<ul>
+				<li>Lorem ipsum dolor sit amet.</li>
+				<li>Lorem ipsum dolor sit amet.</li>
+				<li>Lorem ipsum dolor sit amet.</li>
+			</ul>
+		</StaItem>
+		<StaItem class="section">none(div) tag</StaItem>
+		<StaItem class="section" tag="p">p tag</StaItem>
+		<StaItem class="section" tag="span">span tag</StaItem>
+		<StaItem class="section" tag="span">span tag</StaItem>
 		<div>store에서 받아온 lang 값: {{ store.lang }}</div>
 		<common-btn @click="popup.setShow(true)">popup show</common-btn>
 		<app-lang></app-lang>

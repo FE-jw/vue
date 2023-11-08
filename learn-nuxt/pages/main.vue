@@ -1,7 +1,8 @@
 <template>
-	<section class="container">
-
-	</section>
+	<div>
+		main
+		<nuxt-link to="/osjduj">error</nuxt-link>
+	</div>
 </template>
 
 <script setup>
@@ -9,5 +10,5 @@
 </script>
 
 <style lang="scss" scoped>
-.container	{flex:1;padding:2.0rem;}
+
 </style>
