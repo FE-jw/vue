@@ -1,6 +1,7 @@
 <template>
 	<div>
 		error
+		<br>
 		{{ error }}
 	</div>
 </template>
@@ -11,5 +12,6 @@ console.log(error);
 </script>
 
 <style lang="scss" scoped>
-
+	$color: #d33;
+	div	{color:$color;}
 </style>
