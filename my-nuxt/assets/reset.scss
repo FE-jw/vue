@@ -1,0 +1,16 @@
+$cdn: 'https://cdn.jsdelivr.net/gh/fe-jw/fe-jw.github.io/';
+
+@import '_var';
+@import '_font';
+
+*	{margin:0;padding:0;}
+html	{-webkit-text-size-adjust:none;font-size:10px;}
+#__nuxt	{display:flex;flex-direction:column;min-width:320px;height:100vh;height:100dvh;line-height:1.3;font-family:var(--font-default);font-size:1.6rem;font-weight:400;color:#fff;background-color:var(--main-dark);}
+button	{border:none;font-family:var(--font-default);background:none;cursor:pointer;}
+
+// CSS Variable
+:root	{
+	--main-dark: #111;
+	--nuxt-green: #00DC82;
+	--font-default: 'Pretendard', Arial, Helvetica, sans-serif;
+}
