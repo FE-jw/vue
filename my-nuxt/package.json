@@ -13,6 +13,8 @@
     "@nuxtjs/style-resources": "^1.2.1",
     "nuxt": "^3.7.0",
     "sass": "^1.66.1",
-    "sass-loader": "^13.3.2"
+    "sass-loader": "^13.3.2",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5"
   }
 }
