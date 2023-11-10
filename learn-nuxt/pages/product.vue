@@ -1,13 +1,15 @@
 <template>
 	<div>
-		home
+		product
+		<nuxt-link to="/">home</nuxt-link>
 		<nuxt-link to="/main">main</nuxt-link>
-		<nuxt-link to="/product">product</nuxt-link>
+		<!-- {{ $router }} -->
 	</div>
 </template>
 
 <script setup>
-const num = ref(0);
+// const routeData = ref($router);
+
 </script>
 
 <style lang="scss" scoped>
