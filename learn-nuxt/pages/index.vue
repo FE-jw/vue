@@ -2,7 +2,7 @@
 	<div>
 		home
 		<nuxt-link to="/main">main</nuxt-link>
-		<nuxt-link to="/product">product</nuxt-link>
+		<!-- <nuxt-link to="/product">product</nuxt-link> -->
 	</div>
 </template>
 
