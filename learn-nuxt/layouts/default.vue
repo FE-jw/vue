@@ -1,9 +1,12 @@
 <template>
-	<Header></Header>
+	<!-- <Header></Header> -->
 	<div class="container">
+		<h1>
+			<nuxt-link to="/">HOME</nuxt-link>
+		</h1>
 		<slot />
 	</div>
-	<Footer></Footer>
+	<!-- <Footer></Footer> -->
 </template>
 
 <style lang="scss">

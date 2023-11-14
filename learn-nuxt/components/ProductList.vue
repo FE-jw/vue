@@ -4,10 +4,10 @@
 		<ul>
 			<li v-for="product in products.list" :key="product.id">
 				<div class="thumb">
-					<img :src="product.imageUrl" alt="">
+					<img :src="product.imageUrl" :alt="product.name">
 				</div>
 				<div class="info">
-					<div>id: {{ product.id }}</div>
+					<!-- <div>id: {{ product.id }}</div> -->
 					<div>name: {{ product.name }}</div>
 					<div>price: {{ product.price }}</div>
 				</div>
