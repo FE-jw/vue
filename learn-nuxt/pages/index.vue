@@ -24,7 +24,11 @@
 <script setup>
 const router = useRouter();
 const products = reactive({});
-const { data } = await useFetch('http://localhost:3000/products');
+// const { data } = await useFetch('http://localhost:3000/products');
+const { data } = await useAsyncData(
+	'productList',
+	() => $fetch('http://localhost:3000/products')
+);
 products.list = data;
 
 const moveToDetailPage = id => {
