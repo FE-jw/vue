@@ -4,7 +4,7 @@
 
 <style lang="scss" scoped>
 svg	{display:block;width:100%;height:100%;
-	path	{transition:opacity 0.3s;}
-	&:hover path	{opacity:0.8;}
+	path	{transition:opacity 0.2s;}
+	&:hover path	{opacity:0.5;}
 }
 </style>

@@ -1,8 +1,3 @@
-<!-- 
-	TODO
-	* 라우팅 문제 확인하기
- -->
-
 <template>
 	<div>
 		<global-btn @click="changeLang">언어 변경</global-btn> || 현재 언어: {{ lang }}
@@ -14,7 +9,9 @@
 </template>
 
 <script setup>
-const { data } = await useFetch('/api/test');
+const { data } = await useAsyncData('lang',
+	() => $fetch('/api/test')
+);
 
 const lang = ref('ko');
 const changeLang = () => {
