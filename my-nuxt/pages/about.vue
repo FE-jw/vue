@@ -1,7 +1,6 @@
 <template>
 	<div>
-		main
-		<nuxt-link to="/osjduj">error</nuxt-link>
+		about
 	</div>
 </template>
 

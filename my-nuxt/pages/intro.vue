@@ -1,6 +1,6 @@
 <template>
 	<div>
-		main
+		intro
 	</div>
 </template>
 

@@ -1,10 +1,11 @@
 <template>
 	<nuxt-header></nuxt-header>
-	<nuxt></nuxt>
-	<nuxt-container></nuxt-container>
+	<div class="container">
+		<slot />
+	</div>
 	<nuxt-footer></nuxt-footer>
 </template>
 
 <style lang="scss" scoped>
-
+.container	{flex:1;padding:2.0rem;}
 </style>

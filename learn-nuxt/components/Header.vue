@@ -1,7 +1,7 @@
 <template>
-	<div>
-		testjson
-	</div>
+	<header>
+		Header
+	</header>
 </template>
 
 <script setup>
