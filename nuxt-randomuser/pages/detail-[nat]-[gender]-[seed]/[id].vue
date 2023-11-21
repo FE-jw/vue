@@ -16,7 +16,7 @@ console.log(routeInfo);
 const randomResult = reactive({});
 
 const { data } = await useAsyncData('detail',
-	() => $fetch('https://randomuser.me/api', {
+	() => $fetch('https://randomuser.me/api/', {
 		params: {
 			nat: routeInfo.nat,
 			gender: routeInfo.gender,

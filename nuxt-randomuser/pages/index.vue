@@ -6,7 +6,7 @@
 				<span class="nation">국가 선택</span>
 				<ul class="list-radio">
 					<li v-for="(nat, index) in natArr" :key="index">
-						<nat-radio name="nation" :id="`nation-${index}`" :value="nat.toLocaleLowerCase()" @changeNation="nation => updateNation(nation)">{{ nat }}</nat-radio>
+						<nat-radio name="nation" :id="`nation-${index}`" :value="nat" @changeNation="nation => updateNation(nation)">{{ nat }}</nat-radio>
 					</li>
 				</ul>
 				<div>
@@ -17,8 +17,9 @@
 					조회중...
 				</div>
 				<ul v-if="randomInfo.user.length > 0" class="list-user">
-					<li v-for="(user, index) in randomInfo.user" :key="user.id">
-						<nuxt-link :to="`/detail-${randomInfo.nat}-${randomInfo.gender}-${randomInfo.seed}/${index}`">
+					<li v-for="(user, index) in randomInfo.user" :key="index">
+						<!-- <nuxt-link :to="`/detail-${randomInfo.nat}-${randomInfo.gender}-${randomInfo.seed}/${index}`"> -->
+						<nuxt-link @click="moveToDetail">
 							<div class="item">
 								<div class="thumb">
 									<img :src="user.picture.large" :alt="`${user.name.first} ${user.name.last}`">
@@ -64,15 +65,15 @@ const onSearch = async () => {
 		randomInfo.loading = true;
 
 		const { data } = await useAsyncData('randomUser',
-			() => $fetch('https://randomuser.me/api', {
+			() => $fetch('https://randomuser.me/api/', {
 				params: {
 					nat: randomInfo.nat,
 					gender: randomInfo.gender,
-					results: 10,
+					results: 10
 				}
 			})
 		);
-		
+
 		randomInfo.seed = data.value.info.seed;
 		randomInfo.user = data.value.results;
 		randomInfo.loading = false;
