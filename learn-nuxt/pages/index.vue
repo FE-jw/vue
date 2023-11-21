@@ -17,13 +17,20 @@
 					</div>
 				</li>
 			</ul>
-			<global-btn type="button" class="move-cart" @click="moveToCart">장바구니 바로가기</global-btn>
+			<nuxt-link to="/cart" class="move-cart">장바구니 바로가기</nuxt-link>
 		</main>
 	</div>
 </template>
 
 <script setup>
+// 스토어
+import { useStore } from '@/store/index.js';
+const store = useStore();
+
+// 라우터
 const router = useRouter();
+
+// 상품 리스트
 const products = reactive({});
 const { data } = await useAsyncData(
 	'productList',
@@ -31,14 +38,17 @@ const { data } = await useAsyncData(
 );
 products.list = data;
 
+// 자세히 보기 페이지 이동
 const moveToDetailPage = id => {
 	router.push(`detail/${id}`);
 };
 
+// 키워드 저장
 const searchKeyword = ref('');
-const updateKeyword = keyword => {
-	searchKeyword.value = keyword;
-};
+const updateKeyword = keyword => searchKeyword.value = keyword;
+
+// 검색 결과
+/*
 const searchProduct = async () => {
 	const { data } = await useAsyncData(
 		'filterResult',
@@ -51,9 +61,15 @@ const searchProduct = async () => {
 
 	products.list = data;
 };
+*/
+const searchProduct = async () => {
+	const data = await $fetch('http://localhost:3000/products', {
+		params: {
+			name_like: searchKeyword.value
+		}
+	}).catch(err => console.log(err));
 
-const moveToCart = () => {
-	router.push('/cart');
+	products.list = data;
 };
 </script>
 
@@ -77,5 +93,5 @@ ul	{margin:2.0rem auto 0;border:1px solid #777;font-size:2.0rem;
 		}
 	}
 }
-.move-cart	{position:fixed;right:2.0rem;bottom:2.0rem;}
+.move-cart	{padding:1.0rem 2.0rem;position:fixed;right:2.0rem;bottom:2.0rem;border-radius:0.6rem;font-size:1.6rem;font-weight:700;color:#fff;background-color:#d33;text-decoration:none;}
 </style>

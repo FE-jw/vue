@@ -1,7 +1,7 @@
 <template>
 	<div class="search-wrap">
 		<input type="text" placeholder="상품명" :value="defaultValue" @input="emit('onUpdateInput', $event.target.value)" @keydown.enter="emit('onSearch')">
-		<global-btn type="button" @click="emit('onSearch')">search</global-btn>
+		<common-btn type="button" @click="emit('onSearch')">search</common-btn>
 	</div>
 </template>
 

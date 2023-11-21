@@ -4,14 +4,16 @@
 		<div>id: {{ data.id }}</div>
 		<div>name: {{ data.name }}</div>
 		<div>price: {{ data.price }}</div>
-		<global-btn type="button" @click="addToCart">Add To Cart</global-btn>
+		<common-btn type="button" @click="addToCart">Add To Cart</common-btn>
 	</div>
 </template>
 
 <script setup>
+import { useStore } from '@/store/index.js';
+const store = useStore();
+
 const route = useRoute();
 const router = useRouter();
-
 const id = route.params.id;
 
 const { data } = await useAsyncData(
@@ -20,6 +22,7 @@ const { data } = await useAsyncData(
 );
 
 const addToCart = () => {
+	store.addCartItem(data.value);
 	router.push('/cart');
 };
 </script>
