@@ -19,7 +19,7 @@
 				<ul v-if="randomInfo.user.length > 0" class="list-user">
 					<li v-for="(user, index) in randomInfo.user" :key="index">
 						<!-- <nuxt-link :to="`/detail-${randomInfo.nat}-${randomInfo.gender}-${randomInfo.seed}/${index}`"> -->
-						<nuxt-link @click="moveToDetail">
+						<!-- <nuxt-link @click="moveToDetail"> -->
 							<div class="item">
 								<div class="thumb">
 									<img :src="user.picture.large" :alt="`${user.name.first} ${user.name.last}`">
@@ -30,7 +30,7 @@
 									<div>country: {{ user.location.country }}</div>
 								</div>
 							</div>
-						</nuxt-link>
+						<!-- </nuxt-link> -->
 					</li>
 				</ul>
 			</form>
@@ -95,7 +95,7 @@ const onSearch = async () => {
 					.item	{border:1px solid rgba($nuxt-green, 0.6);box-shadow:0.5rem 0.5rem 0.5rem rgba($nuxt-green, 0.3);}
 				}
 			}
-			.item	{display:flex;padding:2.0rem;border:1px solid rgba($nuxt-green, 0.3);transition:border-color 0.2s, box-shadow 0.2s;;
+			.item	{display:flex;padding:2.0rem;border:1px solid rgba($nuxt-green, 0.3);transition:border-color 0.2s, box-shadow 0.2s;
 				.thumb	{flex:none;
 					img	{width:10.0rem;}
 				}

@@ -1,6 +1,6 @@
 <template>
 	<select @change="emit('changeGender', $event.target.value)">
-		<option selected disabled>선별 선택</option>
+		<option selected disabled>성별 선택</option>
 		<option value="male">male</option>
 		<option value="female">female</option>
 	</select>
