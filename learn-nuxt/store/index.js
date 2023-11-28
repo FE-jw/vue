@@ -2,15 +2,20 @@ import { defineStore } from 'pinia';
 
 export const useStore = defineStore('store', () => {
 	// state
-	const cartItems = reactive([]);
+	// const cartItems = reactive([]);
 
 	// actions
-	const addCartItem = cartItem => {
-		cartItems.push(cartItem);
+	const createCartItem = cartItem => {
+		// cartItems.push(cartItem);
+
+		/* $fetch('http://localhost:3000/carts', {
+			method: 'POST',
+			body: cartItem
+		}); */
 	};
 
 	return {
-		cartItems,
-		addCartItem
+		// cartItems,
+		createCartItem
 	}
 });

@@ -9,8 +9,8 @@
 </template>
 
 <script setup>
-import { useStore } from '@/store/index.js';
-const store = useStore();
+// import { useStore } from '@/store/index.js';
+// const store = useStore();
 
 const route = useRoute();
 const router = useRouter();
@@ -21,8 +21,12 @@ const { data } = await useAsyncData(
 	() => $fetch(`http://localhost:3000/products/${id}`)
 );
 
-const addToCart = () => {
-	store.addCartItem(data.value);
+const addToCart = async () => {
+	await $fetch('http://localhost:3000/carts', {
+		method: 'POST',
+		body: data.value
+	});
+
 	router.push('/cart');
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<h1>카트 페이지</h1>
-		<ul class="list-cart" v-if="store.cartItems.length">
-			<li v-for="(item, index) in store.cartItems" :key="index">
+		<ul class="list-cart" v-if="data.length">
+			<li v-for="(item, index) in data" :key="index">
 				<span class="idx">{{ index }}</span>
 				<img :src="item.imageUrl" :alt="item.name">
 				<div class="name">{{ item.name }}</div>
@@ -14,8 +14,13 @@
 </template>
 
 <script setup>
-import { useStore } from '@/store/index.js';
-const store = useStore();
+// import { useStore } from '@/store/index.js';
+// const store = useStore();
+
+const { data } = await useAsyncData(
+	'cartItems',
+	() => $fetch('http://localhost:3000/carts')
+);
 </script>
 
 <style lang="scss" scoped>
