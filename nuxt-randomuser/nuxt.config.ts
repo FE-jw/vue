@@ -24,7 +24,7 @@ export default defineNuxtConfig({
         },
         {
           "charset": "utf-8"
-        },
+        }
       ],
       'title': 'Nuxt.js Random User'
     }
