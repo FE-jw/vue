@@ -21,6 +21,16 @@ const { data } = await useAsyncData(
 	'cartItems',
 	() => $fetch('http://localhost:3000/carts')
 );
+
+useHead({
+	title: 'jw nuxt cart page',
+	meta: [
+		{
+			name: 'description',
+			content: 'jw cart page'
+		}
+	]
+});
 </script>
 
 <style lang="scss" scoped>

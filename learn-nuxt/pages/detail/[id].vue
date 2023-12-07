@@ -29,6 +29,22 @@ const addToCart = async () => {
 
 	router.push('/cart');
 };
+
+// useHead({
+// 	title: 'jw nuxt detail',
+// 	meta: [
+// 		{ name: 'description', content: data.value.name },
+// 		{ charset: 'test utf-8' }
+// 	]
+// })
+
+useSeoMeta({
+	title: 'jw nuxt detail',
+	charset: 'test utf-8',
+	description: data.value.name,
+	ogImage: data.value.imageUrl,
+	ogDescription: data.value.name
+})
 </script>
 
 <style lang="scss" scoped>
