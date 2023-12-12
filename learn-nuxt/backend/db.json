@@ -184,15 +184,9 @@
   "carts": [
     {
       "id": 1,
-      "name": "Intelligent Metal Mouse",
-      "price": "84.00",
-      "imageUrl": "https://picsum.photos/640/480"
-    },
-    {
-      "id": 7,
-      "name": "Awesome Concrete Shirt",
-      "price": "165.00",
-      "imageUrl": "https://picsum.photos/640/480"
+      "name": "Refined Fresh Chicken",
+      "price": "209.00",
+      "imageUrl": "https://picsum.photos/640/480/?blur"
     }
   ],
   "mountains": [

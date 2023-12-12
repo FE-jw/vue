@@ -1,6 +1,6 @@
 <template>
 	<main class="container">
-		<sta-item class="section" tag="section"><span>aaa</span> section tag</sta-item>
+		<sta-item class="section" sta-tag="section"><span>aaa</span> section tag</sta-item>
 		<div>
 			{{ cnt }}
 			<common-btn @click="increaseCnt">increaseCnt</common-btn>
@@ -16,9 +16,9 @@
 			</ul>
 		</StaItem>
 		<StaItem class="section">none(div) tag</StaItem>
-		<StaItem class="section" tag="p">p tag</StaItem>
-		<StaItem class="section" tag="span">span tag</StaItem>
-		<StaItem class="section" tag="span">span tag</StaItem>
+		<StaItem class="section" sta-tag="p">p tag</StaItem>
+		<StaItem class="section" sta-tag="span">span tag</StaItem>
+		<StaItem class="section" sta-tag="span">span tag</StaItem>
 		<div>store에서 받아온 lang 값: {{ store.lang }}</div>
 		<common-btn @click="popup.setShow(true)">popup show</common-btn>
 		<app-lang></app-lang>
@@ -36,15 +36,9 @@ const store = useStore();
 const popup = usePopup();
 
 const cnt = ref(0);
-const increaseCnt = () => {
-	cnt.value++;
-};
-const decreaseCnt = () => {
-	cnt.value--;
-};
-const resetCnt = () => {
-	cnt.value = 0;
-};
+const increaseCnt = () => cnt.value++;
+const decreaseCnt = () => cnt.value--;
+const resetCnt = () => cnt.value = 0;
 
 // 부모 컴포넌트에서 전달받은 props
 // const props = defineProps({
