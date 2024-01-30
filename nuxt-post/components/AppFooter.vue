@@ -10,7 +10,7 @@ const commonStore = useCommonStore();
 </script>
 
 <style lang="scss" scoped>
-footer	{padding:2.0rem;border-top:1px solid #999;
+footer	{flex:none;padding:2.0rem;border-top:1px solid #999;
 	.copyright	{font-size:1.2rem;color:#999;text-align:center;}
 }
 </style>

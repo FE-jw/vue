@@ -1,5 +1,5 @@
 <template>
-	<div class="my-swiper" v-if="commonStore.isMobile && swiper.active">
+	<div class="my-swiper" v-if="commonStore.isMobile && swiper.init">
 		<Swiper
 			:modules="[SwiperNavigation]"
 			:slides-per-view="'auto'"
@@ -9,41 +9,41 @@
 			:centered-slides="true"
 			:navigation="true"
 		>
-			<swiper-slide v-for="(slide, index) in (swiper.loop * swiper.set)" :key="index">
+			<swiper-slide v-for="(slide, index) in (swiper.slideLength * swiper.loopSet)" :key="index">
 				<img src="@/assets/img/slide.svg" alt="">
 			</swiper-slide>
 		</Swiper>
 	</div>
 	<ul class="main-img" v-else>
-		<li><img src="@/assets/img/slide.svg" alt=""></li>
-		<li><img src="@/assets/img/slide.svg" alt=""></li>
-		<li><img src="@/assets/img/slide.svg" alt=""></li>
+		<li v-for="(item, index) in 3" :key="index">
+			<img src="@/assets/img/slide.svg" alt="">
+		</li>
 	</ul>
 </template>
 
 <script setup>
 const commonStore = useCommonStore();
 const swiper = reactive({
-	active: false,
-	loop: 3,
-	set: 4
+	init: false,
+	slideLength: 3,
+	loopSet: 4
 });
-const resetSwiper = () => {
-	if(commonStore.isMobile && !swiper.active){
-		swiper.active = true;
-	}else if(!commonStore.isMobile && swiper.active){
-		swiper.active = false;
+const setSwiper = () => {
+	if(commonStore.isMobile && !swiper.init){
+		swiper.init = true;
+	}else if(!commonStore.isMobile && swiper.init){
+		swiper.init = false;
 	}
 };
 
 onMounted(() => {
-	resetSwiper();
+	setSwiper();
 
-	window.addEventListener('resize', resetSwiper);
+	window.addEventListener('resize', setSwiper);
 });
 
 onUnmounted(() => {
-	window.removeEventListener('resize', resetSwiper);
+	window.removeEventListener('resize', setSwiper);
 });
 </script>
 
@@ -56,7 +56,7 @@ onUnmounted(() => {
 		}
 	}
 }
-.main-img	{display:flex;justify-content:center;align-items:center;width:70.0rem;margin:0 auto;padding:4.0rem 0;
+.main-img	{display:flex;justify-content:center;align-items:center;width:70.0rem;margin:0 auto;
 	li	{width:22.0rem;
 		& ~ li	{margin-left:2.0rem;}
 		img	{width:100%;}

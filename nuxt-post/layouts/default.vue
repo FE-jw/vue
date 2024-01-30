@@ -1,5 +1,5 @@
 <template>
-	<div class="app" :data-theme="commonStore.theme">
+	<div id="app" :data-theme="commonStore.theme">
 		<app-header></app-header>
 		<main>
 			<slot />
@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.app	{display:flex;flex-direction:column;min-width:320px;height:100vh;height:100dvh;line-height:1.3;font-family:var(--font-default);font-size:16px;font-weight:400;color:var(--default-text);background-color:var(--default-reverse);
+#app	{display:flex;flex-direction:column;min-width:320px;min-height:100vh;min-height:100dvh;line-height:1.3;font-family:var(--font-default);font-size:16px;font-weight:400;color:var(--default-text);background-color:var(--default-reverse);
 	--default-text: #111;
 	--default-reverse: #fff;
 	--nuxt-green: #00DC82;
@@ -36,6 +36,6 @@ onMounted(() => {
 	}
 
 	// Content
-	main	{flex:1;}
+	main	{flex:1;padding:2.0rem 0;}
 }
 </style>

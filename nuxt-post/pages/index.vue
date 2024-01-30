@@ -11,5 +11,5 @@
 </script>
 
 <style lang="scss" scoped>
-.sub-tit	{padding:0 2.0rem;}
+.sub-tit	{margin-top:4.0rem;padding:0 2.0rem;}
 </style>

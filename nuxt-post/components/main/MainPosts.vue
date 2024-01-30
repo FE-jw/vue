@@ -26,7 +26,7 @@ const { data } = await useAsyncData(
 	'posts',
 	() => $fetch(post.apiUrl)
 );
-post.list = data;
+post.list = data.value;
 
 const setLength = () => {
 	if(commonStore.isMobile && post.length != 5){
