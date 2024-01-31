@@ -5,7 +5,7 @@
 			:slides-per-view="'auto'"
 			:loop="true"
 			:space-between="20"
-			:initial-slide="swiper.set - 1"
+			:initial-slide="swiper.loopSet - 1"
 			:centered-slides="true"
 			:navigation="true"
 		>
@@ -14,7 +14,7 @@
 			</swiper-slide>
 		</Swiper>
 	</div>
-	<ul class="main-img" v-else>
+	<ul class="main-img" v-else-if="!commonStore.isMobile && !swiper.init">
 		<li v-for="(item, index) in 3" :key="index">
 			<img src="@/assets/img/slide.svg" alt="">
 		</li>

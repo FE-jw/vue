@@ -5,8 +5,8 @@
 				<div class="tit">{{ list.title }}</div>
 			</nuxt-link>
 			<button v-if="!commonStore.isMobile" type="button" class="btn-copy" title="url 복사하기" @click="copyUrl(`posts/${index + 1}`)">
-				<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 1024 1024"><path d="M768 832a128 128 0 0 1-128 128H192A128 128 0 0 1 64 832V384a128 128 0 0 1 128-128v64a64 64 0 0 0-64 64v448a64 64 0 0 0 64 64h448a64 64 0 0 0 64-64h64z"/><path d="M384 128a64 64 0 0 0-64 64v448a64 64 0 0 0 64 64h448a64 64 0 0 0 64-64V192a64 64 0 0 0-64-64H384zm0-64h448a128 128 0 0 1 128 128v448a128 128 0 0 1-128 128H384a128 128 0 0 1-128-128V192A128 128 0 0 1 384 64z"/></svg>
 				<span class="hide">url 복사하기</span>
+				<svg-copy />
 			</button>
 		</li>
 	</ul>
@@ -36,6 +36,13 @@ const setLength = () => {
 	}
 };
 
+const copyUrl = url => {
+	const copyValue = window.location.href + url;
+	
+	window.navigator.clipboard.writeText(copyValue);
+	popStore.open(`${copyValue} 복사`);
+};
+
 onMounted(() => {
 	setLength();
 
@@ -45,17 +52,10 @@ onMounted(() => {
 onUnmounted(() => {
 	window.removeEventListener('resize', setLength);
 });
-
-const copyUrl = url => {
-	const copyValue = window.location.href + url;
-	
-	window.navigator.clipboard.writeText(copyValue);
-	popStore.open(`${copyValue} 복사`);
-};
 </script>
 
 <style lang="scss" scoped>
-ul	{margin:2.0rem 2.0rem 0;border:1px solid #ccc;
+ul	{width:calc(100% - 4.0rem);max-width:70.0rem;margin:2.0rem auto 0;border:1px solid #ccc;box-sizing:border-box;
 	li	{display:flex;align-items:center;
 		& ~ li	{border-top:1px solid #ccc;}
 		a	{flex:1;min-width:0;padding:2.0rem 1.0rem;font-size:16px;color:var(--default-text);text-decoration:none;
@@ -63,9 +63,6 @@ ul	{margin:2.0rem 2.0rem 0;border:1px solid #ccc;
 		}
 		.tit	{overflow:hidden;width:100%;text-overflow:ellipsis;white-space:nowrap;word-break:break-all;}
 		.btn-copy	{flex:none;width:5.0rem;height:100%;padding:1.0rem;
-			svg	{width:100%;height:auto;
-				path	{fill:var(--default-text);}
-			}
 			&:hover {opacity:0.5;}
 		}
 	}

@@ -20,7 +20,7 @@ useSeoMeta({
 </script>
 
 <style lang="scss" scoped>
-.post-content	{padding:3.0rem;
+.post-content	{max-width:70.0rem;margin:0 auto;padding:3.0rem;box-sizing:border-box;
 	.post-tit	{font-size:3.0rem;}
 	.post-body	{margin-top:4.0rem;}
 }

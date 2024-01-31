@@ -1,11 +1,19 @@
 <template>
 	<div class="error-page">
-		nuxt-post project<br>404 not found
+		<div class="error">
+			<h1>nuxt test project</h1><br><br>
+			에러 코드: {{ error.statusCode }}<br>
+			에러 메시지: {{ error.message }}<br>
+		</div>
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { NuxtError } from '#app';
 
+const props = defineProps({
+  error: Object as () => NuxtError
+});
 </script>
 
 <style lang="scss" scoped>

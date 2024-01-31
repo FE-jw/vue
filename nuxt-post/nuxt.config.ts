@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-  css: ['assets/reset.scss'],
+  css: ['assets/css/reset.scss'],
   modules: [
     '@pinia/nuxt',
     'nuxt-swiper'

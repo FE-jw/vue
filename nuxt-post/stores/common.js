@@ -1,6 +1,6 @@
 export const useCommonStore = defineStore('common', () => {
 	// state
-	const isMobile = ref();
+	const isMobile = ref(true);
 	const theme = ref('light');
 
 	// actions

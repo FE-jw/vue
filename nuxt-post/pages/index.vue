@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<main-swiper></main-swiper>
+		<main-swiper />
 		<h2 class="sub-tit">Posting</h2>
-		<main-posts></main-posts>
+		<main-posts />
 	</div>
 </template>
 
@@ -11,5 +11,5 @@
 </script>
 
 <style lang="scss" scoped>
-.sub-tit	{margin-top:4.0rem;padding:0 2.0rem;}
+.sub-tit	{width:calc(100% - 4.0rem);max-width:70.0rem;margin:4.0rem auto 0;}
 </style>
