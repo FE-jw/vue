@@ -8,14 +8,19 @@
 			:initial-slide="swiper.loopSet - 1"
 			:centered-slides="true"
 			:navigation="true"
+			:breakpoints="{
+				600: { spaceBetween: 50 }
+			}"
+			@init="() => { console.log('init') }"
+			@destroy="() => { console.log('destroy') }"
 		>
-			<swiper-slide v-for="(slide, index) in (swiper.slideLength * swiper.loopSet)" :key="index">
+			<swiper-slide v-for="{ index } in (swiper.slideLength * swiper.loopSet)" :key="index">
 				<img src="@/assets/img/slide.svg" alt="">
 			</swiper-slide>
 		</Swiper>
 	</div>
 	<ul class="main-img" v-else-if="!commonStore.isMobile && !swiper.init">
-		<li v-for="(item, index) in 3" :key="index">
+		<li v-for="{ index } in 3" :key="index">
 			<img src="@/assets/img/slide.svg" alt="">
 		</li>
 	</ul>
@@ -23,11 +28,13 @@
 
 <script setup>
 const commonStore = useCommonStore();
+
 const swiper = reactive({
 	init: false,
 	slideLength: 3,
 	loopSet: 4
 });
+
 const setSwiper = () => {
 	if(commonStore.isMobile && !swiper.init){
 		swiper.init = true;
@@ -36,15 +43,8 @@ const setSwiper = () => {
 	}
 };
 
-onMounted(() => {
-	setSwiper();
-
-	window.addEventListener('resize', setSwiper);
-});
-
-onUnmounted(() => {
-	window.removeEventListener('resize', setSwiper);
-});
+onMounted(setSwiper);
+useMyEvent('resize', setSwiper);
 </script>
 
 <style lang="scss" scoped>

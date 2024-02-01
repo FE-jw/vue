@@ -7,7 +7,8 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       meta: [
         { name: 'description', content: 'JW nuxt-post 프로젝트입니닷' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover' }
+        { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover' },
+        { name: 'format-detection', content: 'telephone=no' }
       ]
     }
   },
@@ -15,5 +16,10 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     'nuxt-swiper'
-  ]
+  ],
+  runtimeConfig: {
+    public: {
+      myname: process.env.MYNAME
+    }
+  }
 })

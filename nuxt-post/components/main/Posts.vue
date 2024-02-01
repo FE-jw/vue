@@ -1,4 +1,5 @@
 <template>
+	<h2 class="sub-tit">Posting</h2>
 	<ul>
 		<li v-for="(list, index) in post.list.slice(0, post.length)" :key="index">
 			<nuxt-link :to="`/posts/${index + 1}`">
@@ -43,18 +44,12 @@ const copyUrl = url => {
 	popStore.open(`${copyValue} 복사`);
 };
 
-onMounted(() => {
-	setLength();
-
-	window.addEventListener('resize', setLength);
-});
-
-onUnmounted(() => {
-	window.removeEventListener('resize', setLength);
-});
+onMounted(setLength);
+useMyEvent('resize', setLength);
 </script>
 
 <style lang="scss" scoped>
+.sub-tit	{width:calc(100% - 4.0rem);max-width:70.0rem;margin:4.0rem auto 0;}
 ul	{width:calc(100% - 4.0rem);max-width:70.0rem;margin:2.0rem auto 0;border:1px solid #ccc;box-sizing:border-box;
 	li	{display:flex;align-items:center;
 		& ~ li	{border-top:1px solid #ccc;}

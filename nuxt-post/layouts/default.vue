@@ -12,18 +12,16 @@
 <script setup>
 const commonStore = useCommonStore();
 const popStore = usePopStore();
+const config = useRuntimeConfig();
+// console.log(config);
 
 onBeforeMount(() => {
+	console.log();
 	commonStore.isMobile = window.matchMedia('(max-width: 767px)').matches
 
 	window.matchMedia('(max-width: 767px)').addEventListener('change', match => {
 		commonStore.isMobile = match.matches;
 	});
-})
-
-onMounted(() => {
-	// commonStore.isMobile = window.matchMedia('(max-width: 767px)').matches;
-	
 });
 </script>
 

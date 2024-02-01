@@ -13,7 +13,7 @@ const popStore = usePopStore();
 
 <style lang="scss" scoped>
 .pop-wrap	{display:flex;justify-content:center;align-items:center;width:100%;height:100%;position:fixed;left:0;top:0;background-color:rgba(0, 0, 0, 0.8);overflow-y:auto;
-	.pop-layer	{width:30.0rem;;position:relative;background-color:#fff;
+	.pop-layer	{width:30.0rem;position:relative;background-color:#fff;
 		.pop-txt	{display:flex;justify-content:center;align-items:center;text-align:center;min-height:20.0rem;font-size:1.4rem;color:#000;}
 		.btn-close	{padding:1.0rem;position:absolute;right:0;top:0;font-size:1.6rem;color:#fff;background-color:#000;}
 	}
