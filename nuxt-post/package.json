@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/html-validator": "^1.6.0",
     "nuxt": "^3.9.1",
     "sass": "^1.69.7",
     "sass-loader": "^14.0.0",

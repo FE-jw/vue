@@ -15,7 +15,8 @@ export default defineNuxtConfig({
   css: ['assets/css/reset.scss'],
   modules: [
     '@pinia/nuxt',
-    'nuxt-swiper'
+    'nuxt-swiper',
+    '@nuxtjs/html-validator'
   ],
   runtimeConfig: {
     public: {
