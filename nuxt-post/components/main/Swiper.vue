@@ -11,13 +11,14 @@
 			:breakpoints="{
 				600: { spaceBetween: 50 }
 			}"
-			@init="() => { console.log('init') }"
+			@init="sw => { swiper.this = sw }"
 			@destroy="() => { console.log('destroy') }"
 		>
 			<swiper-slide v-for="{ index } in (swiper.slideLength * swiper.loopSet)" :key="index">
 				<img src="@/assets/img/slide.svg" alt="">
 			</swiper-slide>
 		</Swiper>
+		<button type="button" @click="swiperPrev">prev</button>/<button type="button" @click="swiperNext">next</button>
 	</div>
 	<ul class="main-img" v-else-if="!commonStore.isMobile && !swiper.init">
 		<li v-for="{ index } in 3" :key="index">
@@ -30,10 +31,18 @@
 const commonStore = useCommonStore();
 
 const swiper = reactive({
+	this: '',
 	init: false,
 	slideLength: 3,
 	loopSet: 4
 });
+
+const swiperNext = () => {
+	swiper.this.slideNext();
+};
+const swiperPrev = () => {
+	swiper.this.slidePrev();
+};
 
 const setSwiper = () => {
 	if(commonStore.isMobile && !swiper.init){
