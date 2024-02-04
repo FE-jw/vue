@@ -10,13 +10,17 @@ export default defineNuxtConfig({
   css: [
     'assets/reset.scss'
   ],
+  components: true,
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "assets/_var.scss";',
+          additionalData: '@import "assets/_var.scss";'
         },
       },
     },
-  }
+  },
+  modules: [
+    '@pinia/nuxt'
+  ]
 })
