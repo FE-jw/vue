@@ -17,10 +17,5 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-swiper',
     '@nuxtjs/html-validator'
-  ],
-  runtimeConfig: {
-    public: {
-      myname: process.env.MYNAME
-    }
-  }
+  ]
 })
