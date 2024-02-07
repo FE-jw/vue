@@ -1,0 +1,11 @@
+$cdn: 'https://cdn.jsdelivr.net/gh/fe-jw/fe-jw.github.io/';
+
+@import '_font';
+
+*	{margin:0;padding:0;}
+html	{-webkit-text-size-adjust:none;font-size:10px;}
+button	{border:none;font-family:var(--font-default);background:none;cursor:pointer;}
+img,
+svg	{vertical-align:top;}
+li, dd	{list-style:none;}
+.hide	{overflow:hidden;position:absolute;width:1px;height:1px;padding:0;border:0;clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);}
