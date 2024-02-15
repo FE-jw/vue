@@ -2,7 +2,7 @@
 	<header>
 		<h1>
 			<nuxt-link to="/">
-				<nuxt-logo></nuxt-logo>
+				<svg-logo></svg-logo>
 			</nuxt-link>
 		</h1>
 		<nav>
@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import NuxtLogo from '@/components/svg/NuxtLogo.vue';
+
 </script>
 
 <style lang="scss" scoped>
