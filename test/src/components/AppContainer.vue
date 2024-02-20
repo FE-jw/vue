@@ -22,6 +22,7 @@
 		<div>store에서 받아온 lang 값: {{ store.lang }}</div>
 		<common-btn @click="popup.setShow(true)">popup show</common-btn>
 		<app-lang></app-lang>
+		<test-pick></test-pick>
 	</main>
 </template>
 
@@ -29,6 +30,7 @@
 import { ref } from 'vue';
 // import { defineProps } from 'vue';
 import AppLang from '@/components/AppLang.vue';
+import TestPick from '@/components/TestPick.vue';
 import { useStore } from '@/stores/store.js';
 import { usePopup } from '@/stores/popup.js';
 

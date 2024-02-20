@@ -1,6 +1,6 @@
 <template>
 	<div class="wrap" :data-theme="store.theme">
-		<app-header></app-header>
+		<!-- <app-header></app-header> -->
 		<app-container></app-container>
 		<app-footer></app-footer>
 		<app-popup v-if="popup.show">
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import AppHeader from '@/components/AppHeader.vue';
+// import AppHeader from '@/components/AppHeader.vue';
 import AppContainer from '@/components/AppContainer.vue';
 import AppFooter from '@/components/AppFooter.vue';
 import AppPopup from '@/components/AppPopup.vue';
