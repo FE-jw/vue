@@ -1,7 +1,8 @@
 <template>
 	<div>
-		index
-		<div>{{ data }}</div>
+		<!-- index -->
+		<!-- <div>{{ data }}</div> -->
+		<my-select />
 	</div>
 </template>
 
