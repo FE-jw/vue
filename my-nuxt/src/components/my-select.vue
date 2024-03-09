@@ -29,11 +29,13 @@ const selectOpen = () => {
 
 // 값 설정
 const setValue = options => {
-	state.isOpen = false;
-	state.current = options.value;
-	state.text = options.text;
-
-	afterChange();
+	if(!state.isDisabled){
+		state.isOpen = false;
+		state.current = options.value;
+		state.text = options.text;
+	
+		afterChange();
+	}
 };
 
 // 값 변경 후
